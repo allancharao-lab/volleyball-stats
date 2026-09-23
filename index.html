@@ -665,6 +665,12 @@ body {
             return false;
         }
 
+        function jogadorJaEscolhido(jogador) {
+            return jogadoresEscolhidos.some(
+            jogadorEscolhido => jogadorEscolhido.id === jogador.id
+            );
+        }
+
 
         // ======================================================
         // VERIFICAR SE O JOGADOR JÁ FOI ESCOLHIDO
