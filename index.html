@@ -402,62 +402,149 @@ body {
         }
 
         #team-players {
-
             width: 100%;
-
             margin-top: 15px;
-
             display: flex;
-
             flex-direction: column;
-
-            gap: 5px;
-
+            align-items: center;
+            gap: 7px;
             max-height: 300px;
-
             overflow-y: auto;
         }
 
-
         .character {
-
             width: 90%;
-
+            min-height: 65px;
             padding: 8px;
+            background: #292929;
+            border: 2px solid #f5c542;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .character:hover {
+            background: #3a3a3a;
+            transform: scale(1.03);
+        }
+
+        .character-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .character-positions {
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: #cccccc;
+        }
+
+        .character-overall {
+            margin-top: 3px;
+
+            font-size: 13px;
+
+            color: #f5c542;
+
+            font-weight: bold;
+        }
+
+        .character-disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            filter: grayscale(100%);
+        }
+
+        .character-disabled:hover {
+            transform: none;
+        }
+
+        .position-overlay {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 1000;
+        }
+
+        .position-popup {
+            width: 260px;
+
+            padding: 25px;
 
             background: #292929;
 
             border: 2px solid #f5c542;
 
-            border-radius: 6px;
+            border-radius: 10px;
+
+            text-align: center;
 
             color: white;
 
-            font-size: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .position-popup h3 {
+            margin-bottom: 8px;
+        }
+
+        .position-popup p {
+            margin-bottom: 20px;
+
+            font-weight: bold;
+        }
+
+        .position-popup button {
+            width: 100%;
+
+            padding: 10px;
+
+            margin-top: 7px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #f5c542;
+
+            color: #111;
 
             font-weight: bold;
 
             cursor: pointer;
-
-            transition: 0.2s;
         }
 
-
-        .character:hover {
-
-            background: #3a3a3a;
-
-            transform: scale(1.03);
+        .position-popup button:hover {
+            background: #ffd966;
         }
 
+        .position-popup .cancelar {
+            background: #555;
+            color: white;
+        }
 
-        .character-disabled {
-
-            opacity: 0.35;
-
-            cursor: not-allowed;
-
-            filter: grayscale(100%);
+        .position-popup .cancelar:hover {
+            background: #666;
         }
     </style>
 
@@ -676,114 +763,86 @@ body {
         // VERIFICAR SE O JOGADOR JÁ FOI ESCOLHIDO
         // ======================================================
         function mostrarJogadoresDaEquipe(equipe) {
-
-            const container =
-                document.getElementById("team-players");
+            const container = document.getElementById("team-players");
 
             if (!container) {
-
-                console.error(
-                    "Não foi encontrado o elemento #team-players"
-                );
-
+                console.error("Não foi encontrado o elemento #team-players");
                 return;
             }
 
-            // Limpar jogadores anteriores
             container.innerHTML = "";
 
-            // Procurar jogadores da equipa
-            const jogadoresDaEquipe = personagens.filter(
-                jogador =>
+            const jogadoresDaEquipe = personagens.filter(jogador => {
+                if (!jogador.time) return false;
+
+                return (
                     jogador.time.trim().toLowerCase() ===
                     equipe.trim().toLowerCase()
-            );
+                );
+            });
 
-            console.log(
-                "Equipa sorteada:",
-                equipe
-            );
+            console.log("Equipa sorteada:", equipe);
+            console.log("Jogadores encontrados:", jogadoresDaEquipe);
 
-            console.log(
-                "Jogadores encontrados:",
-                jogadoresDaEquipe
-            );
-
-            console.log(
-                "Quantidade:",
-                jogadoresDaEquipe.length
-            );
-
-
-            // Se não encontrou jogadores
             if (jogadoresDaEquipe.length === 0) {
-
                 container.innerHTML =
                     "<div>Nenhum jogador encontrado.</div>";
-
                 return;
             }
 
-
-            // Criar jogador por jogador
             jogadoresDaEquipe.forEach(jogador => {
 
-                const jogadorDiv =
-                    document.createElement("div");
-
+                const jogadorDiv = document.createElement("div");
                 jogadorDiv.classList.add("character");
 
-                jogadorDiv.textContent =
-                    jogador.nome;
+                // Nome
+                const nome = document.createElement("div");
+                nome.classList.add("character-name");
+                nome.textContent = jogador.nome;
 
+                // Posições
+                const posicoesJogador = document.createElement("div");
+                posicoesJogador.classList.add("character-positions");
 
-                // Verificar se já foi escolhido
-                const jaEscolhido =
-                    jogadorJaEscolhido(jogador);
+                let textoPosicoes = jogador.posicao1;
 
-
-                // Verificar se pode jogar na posição atual
-                const podeJogar =
-                    podeJogarNaPosicao(
-                        jogador,
-                        posicoes[posicaoAtual]
-                    );
-
-
-                // Jogador indisponível
-                if (jaEscolhido || !podeJogar) {
-
-                    jogadorDiv.classList.add(
-                        "character-disabled"
-                    );
-
-                    jogadorDiv.title =
-                        "Este jogador não pode ocupar " +
-                        posicoes[posicaoAtual];
-
+                if (
+                    jogador.posicao2 &&
+                    jogador.posicao2.toLowerCase() !== "none"
+                ) {
+                    textoPosicoes += " / " + jogador.posicao2;
                 }
 
+                posicoesJogador.textContent = textoPosicoes;
 
-                // Jogador disponível
-                else {
+                // Overall
+                const overall = document.createElement("div");
+                overall.classList.add("character-overall");
+                overall.textContent = "OVR " + jogador.overall;
 
-                    jogadorDiv.addEventListener(
-                        "click",
-                        function () {
+                // Junta tudo
+                jogadorDiv.appendChild(nome);
+                jogadorDiv.appendChild(posicoesJogador);
+                jogadorDiv.appendChild(overall);
 
-                            escolherJogador(jogador);
+                const jaEscolhido = jogadorJaEscolhido(jogador);
 
-                        }
-                    );
+                if (jaEscolhido) {
+
+                    jogadorDiv.classList.add("character-disabled");
+                    jogadorDiv.style.cursor = "not-allowed";
+
+                } else {
+
+                    jogadorDiv.addEventListener("click", function () {
+                        escolherPosicaoDoJogador(jogador);
+                    });
 
                 }
-
 
                 container.appendChild(jogadorDiv);
-
             });
-
-        }
+    }
 
         // ======================================================
         // ESCOLHER JOGADOR
@@ -863,62 +922,112 @@ body {
         // ======================================================
         // COLOCAR JOGADOR NO CAMPO
         // ======================================================
-
         function colocarJogadorNoCampo(
             jogador,
-            posicao
+            posicaoCampo,
+            posicaoEscolhida
         ) {
 
-            const jogadorCampo =
-                document.getElementById(
-                    "player-" + (posicao + 1)
-                );
-
-
-            if (!jogadorCampo) {
-
-                console.error(
-                    "Não foi encontrado player-" +
-                    (posicao + 1)
-                );
-
-                return;
-
-            }
-
-
-            // Alterar nome no campo
-            jogadorCampo.textContent =
-                jogador.nome;
-
-
-            // Guardar o ID do jogador
-            jogadorCampo.dataset.playerId =
-                jogador.id;
-
-
-            // Guardar a posição
-            jogadorCampo.dataset.position =
-                posicoes[posicao];
-
-
-            // Mostrar também o número original
-            jogadorCampo.dataset.number =
-                posicao + 1;
-
-
-            // Retirar o texto antigo
-            jogadorCampo.classList.add(
-                "player-selected"
+            const jogadorCampo = document.getElementById(
+                "player-" + (posicaoCampo + 1)
             );
 
+            if (!jogadorCampo) {
+                console.error(
+                    "Não foi encontrado player-" +
+                    (posicaoCampo + 1)
+                );
+                return;
+            }
+
+            jogadorCampo.textContent = jogador.nome;
+
+            jogadorCampo.dataset.playerId = jogador.id;
+
+            jogadorCampo.dataset.position = posicaoEscolhida;
+
+            jogadorCampo.dataset.number = posicaoCampo + 1;
+
+            jogadorCampo.classList.add("player-selected");
 
             console.log(
                 jogador.nome +
                 " colocado em " +
-                posicoes[posicao]
+                posicaoEscolhida
             );
+}
 
+        function escolherPosicaoDoJogador(jogador) {
+
+            const posicoesJogador = [];
+
+            if (
+                jogador.posicao1 &&
+                jogador.posicao1.toLowerCase() !== "none"
+            ) {
+                posicoesJogador.push(jogador.posicao1.toUpperCase());
+            }
+
+            if (
+                jogador.posicao2 &&
+                jogador.posicao2.toLowerCase() !== "none"
+            ) {
+                posicoesJogador.push(jogador.posicao2.toUpperCase());
+            }
+
+            // Se só tiver uma posição
+            if (posicoesJogador.length === 1) {
+                escolherJogador(jogador, posicoesJogador[0]);
+                return;
+            }
+
+            // Cria a janela
+            const overlay = document.createElement("div");
+            overlay.classList.add("position-overlay");
+
+            const popup = document.createElement("div");
+            popup.classList.add("position-popup");
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = "Escolher posição";
+
+            const nome = document.createElement("p");
+            nome.textContent = jogador.nome;
+
+            popup.appendChild(titulo);
+            popup.appendChild(nome);
+
+            posicoesJogador.forEach(posicao => {
+
+                const botao = document.createElement("button");
+
+                botao.textContent = posicao;
+
+                botao.addEventListener("click", function () {
+
+                    escolherJogador(jogador, posicao);
+
+                    overlay.remove();
+                });
+
+                popup.appendChild(botao);
+            });
+
+            // Botão cancelar
+            const cancelar = document.createElement("button");
+
+            cancelar.textContent = "Cancelar";
+            cancelar.classList.add("cancelar");
+
+            cancelar.addEventListener("click", function () {
+                overlay.remove();
+            });
+
+            popup.appendChild(cancelar);
+
+            overlay.appendChild(popup);
+
+            document.body.appendChild(overlay);
         }
 
 
