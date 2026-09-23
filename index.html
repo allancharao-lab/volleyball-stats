@@ -669,20 +669,6 @@ body {
         // ======================================================
         // VERIFICAR SE O JOGADOR JÁ FOI ESCOLHIDO
         // ======================================================
-
-        function jogadorJaEscolhido(jogador) {
-
-            return jogadoresEscolhidos.some(
-                jogadorEscolhido =>
-                    jogadorEscolhido.id === jogador.id
-            );
-        }
-
-
-        // ======================================================
-        // MOSTRAR JOGADORES DA EQUIPA
-        // ======================================================
-
         function mostrarJogadoresDaEquipe(equipe) {
 
             const container =
@@ -792,32 +778,6 @@ body {
             });
 
         }
-
-                // ==================================================
-                // JOGADOR DISPONÍVEL
-                // ==================================================
-
-                else {
-
-                    jogadorDiv.addEventListener(
-                        "click",
-                        function () {
-
-                            escolherJogador(jogador);
-
-                        }
-                    );
-
-                }
-
-
-                // Adicionar ao ecrã
-                container.appendChild(jogadorDiv);
-
-            });
-
-        }
-
 
         // ======================================================
         // ESCOLHER JOGADOR
