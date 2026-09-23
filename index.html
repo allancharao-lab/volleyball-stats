@@ -851,45 +851,21 @@ body {
         function escolherJogador(jogador) {
 
             // Segurança: verificar novamente se pode jogar
-            if (
-                !podeJogarNaPosicao(
-                    jogador,
-                    posicoes[posicaoAtual]
-                )
-            ) {
-
+            if (!podeJogarNaPosicao(jogador,posicoes[posicaoAtual])) {
                 return;
-
             }
-
-
             // Segurança: impedir escolher o mesmo jogador
             if (jogadorJaEscolhido(jogador)) {
-
                 return;
-
             }
-
-
-            console.log(
-                "Jogador escolhido:",
-                jogador.nome
-            );
-
-            console.log(
-                "Posição:",
-                posicoes[posicaoAtual]
-            );
-
-
+            console.log("Jogador escolhido:",jogador.nome);
+            console.log("Posição:",posicoes[posicaoAtual]);
             // Adicionar aos escolhidos
             jogadoresEscolhidos.push(jogador);
-
-
             // Colocar jogador no campo
             colocarJogadorNoCampo(
                 jogador,
-                posicaoAtual
+                posicaoEscolhida
             );
 
 
@@ -961,17 +937,11 @@ body {
 
             const posicoesJogador = [];
 
-            if (
-                jogador.posicao1 &&
-                jogador.posicao1.toLowerCase() !== "none"
-            ) {
+            if (jogador.posicao1 && jogador.posicao1.toLowerCase() !== "none") {
                 posicoesJogador.push(jogador.posicao1.toUpperCase());
             }
 
-            if (
-                jogador.posicao2 &&
-                jogador.posicao2.toLowerCase() !== "none"
-            ) {
+            if (jogador.posicao2 && jogador.posicao2.toLowerCase() !== "none") {
                 posicoesJogador.push(jogador.posicao2.toUpperCase());
             }
 
