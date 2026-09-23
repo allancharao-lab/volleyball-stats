@@ -1,455 +1,932 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Volleyball status</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Volleyball Game</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    <style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    background:#ececec;
-    min-height:100vh;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+/* =========================
+   BODY
+========================= */
 
-    padding:40px;
+body {
+
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: gray;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
 }
 
-.container{
-    display:flex;
-    gap:50px;
-    align-items:center;
-    flex-wrap:wrap;
+
+/* =========================
+   CAMPO
+========================= */
+
+.field {
+
+    position: relative;
+
+    width: 700px;
+    height: 400px;
+
+    margin-right: -245px;
+
+    background: #d99a3d;
+
+    border: 5px solid white;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 0 4px #181818,
+        0 20px 50px rgba(0, 0, 0, 0.7);
+
+    overflow: visible;
 }
 
-/* PAINEL */
-.panel{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.1);
 
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
+/* =========================
+   REDE
+========================= */
 
-    gap:20px;
+.net {
 
-    min-width:500px;
+    position: absolute;
+
+    left: 50%;
+    top: 0%;
+
+    transform: translateX(-50%);
+
+    width: 7px;
+    height: 100%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px rgba(0, 0, 0, 0.6);
+
+    z-index: 5;
 }
 
-/* HEADER */
-.panel-header{
-    grid-column:1 / -1;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* =========================
+   LINHAS DE ATAQUE
+========================= */
 
-    background:#f7f7f7;
+.attack-line-left {
 
-    padding:15px 20px;
-    border-radius:15px;
+    position: absolute;
 
-    margin-bottom:5px;
+    left: 15%;
+    top: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    z-index: 1;
 }
 
-.info-box{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+
+.attack-line-right {
+
+    position: absolute;
+
+    right: 25%;
+    top: 0;
+
+    width: 3px;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    z-index: 1;
 }
 
-.info-title{
-    font-size:14px;
-    color:#777;
+
+/* =========================
+   ÁREA DOS JOGADORES
+========================= */
+
+.players {
+
+    position: absolute;
+
+    width: 40%;
+    height: 80%;
+
+    z-index: 10;
 }
 
-.info-value{
-    font-size:26px;
-    font-weight:bold;
-    color:#111;
+
+/* =========================
+   JOGADORES
+========================= */
+
+.Player {
+
+    position: absolute;
+
+    width: 77px;
+    height: 77px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        145deg,
+        #292929,
+        #111111
+    );
+
+    border: 2px solid #f5c542;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.6);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
-/* STATS */
-.stat{
-    background:#f7f7f7;
-    padding:15px;
-    border-radius:15px;
+
+/* =========================
+   NÚMERO DO JOGADOR
+========================= */
+
+.Player::before {
+
+    content: attr(data-number);
+
+    position: absolute;
+
+    top: -7px;
+    left: -7px;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #f5c542;
+
+    color: #111;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    border: 2px solid #111;
 }
 
-.stat-header{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-    font-weight:bold;
-    font-size:18px;
+
+/* =========================
+   HOVER
+========================= */
+
+.Player:hover {
+
+    transform: scale(1.15);
+
+    border-color: white;
+
+    box-shadow:
+        0 0 15px rgba(245, 197, 66, 0.7);
 }
 
-.stat-input{
-    width:100%;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    font-size:16px;
-    margin-bottom:10px;
+.Player.pos-1 {
+
+    left: 30%;
+    top: -15%;
 }
 
-.buttons{
-    display:flex;
-    gap:10px;
+
+.Player.pos-2 {
+
+    left: -20%;
+    top: 50%;
 }
 
-button{
-    border:none;
-    padding:8px 14px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    transition:.2s;
+.Player.pos-3 {
+
+    left: 30%;
+    top: 115%;
 }
 
-.plus{
-    background:#16a34a;
-    color:white;
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 1050px) {
+
+    .field {
+
+        width: 90vw;
+        height: 55vw;
+
+        min-height: 450px;
+    }
+
+
+    .players {
+
+        left: 4%;
+        width: 42%;
+    }
+
+
+    .Player {
+
+        width: 48px;
+        height: 48px;
+
+        font-size: 7px;
+    }
 }
 
-.minus{
-    background:#dc2626;
-    color:white;
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .field {
+
+        width: 95vw;
+        height: 500px;
+    }
+
+
+    .players {
+
+        left: 4%;
+
+        top: 18%;
+
+        width: 42%;
+        height: 65%;
+    }
+
+
+    .Player {
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 6px;
+    }
+
+
+    .Player::before {
+
+        width: 15px;
+        height: 15px;
+
+        font-size: 7px;
+
+        top: -5px;
+        left: -5px;
+    }
+
+
+    .Player.libero {
+
+        width: 35px;
+        height: 35px;
+    }
 }
 
-button:hover{
-    transform:scale(1.05);
-}
+/* =========================
+   SORTEIO DA EQUIPA
+========================= */
 
-.restart{
-    grid-column:1 / -1;
+        .team-selection {
 
-    background:#2563eb;
-    color:white;
+            position: absolute;
 
-    padding:12px;
-    font-size:18px;
+            left: 40px;
+            top: 50%;
 
-    margin-top:5px;
-}
+            transform: translateY(-50%);
 
-/* HEX */
-svg{
-    width:500px;
-    height:500px;
-}
+            width: 220px;
+            height: 150px;
 
-.label{
-    fill:#d63d32;
-    font-size:24px;
-    font-weight:bold;
-}
+            background: #181818;
 
-.grid{
-    fill:none;
-    stroke:#333;
-    stroke-width:2;
-}
+            border: 3px solid #f5c542;
 
-.line{
-    stroke:#777;
-    stroke-width:1;
-}
+            border-radius: 10px;
 
-.stats-area{
-    fill:#00c853;
-    fill-opacity:.7;
-    stroke:#009624;
-    stroke-width:3;
-}
+            color: white;
 
-</style>
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .team-selection h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .team-name {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: #f5c542;
+        }
+
+        .character-disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            filter: grayscale(100%);
+        }
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="container">
+     <div class="team-selection">
 
-    <svg viewBox="0 0 600 600">
+        <h2>Equipa sorteada</h2>
 
-        <!-- HEX -->
-        <polygon 
-            class="grid"
-            points="
-            300,80
-            470,180
-            470,380
-            300,480
-            130,380
-            130,180
-            "
-        />
+        <div class="team-name" id="team-name">
+            ?
+        </div>
 
-        <!-- LINHAS -->
-        <line class="line" x1="300" y1="280" x2="300" y2="80"/>
-        <line class="line" x1="300" y1="280" x2="470" y2="180"/>
-        <line class="line" x1="300" y1="280" x2="470" y2="380"/>
-        <line class="line" x1="300" y1="280" x2="300" y2="480"/>
-        <line class="line" x1="300" y1="280" x2="130" y2="380"/>
-        <line class="line" x1="300" y1="280" x2="130" y2="180"/>
+        <button id="start-game">
+            Começar jogo
+        </button>
 
-        <!-- LABELS -->
-        <text class="label" x="270" y="50">Spike</text>
-        <text class="label" x="450" y="160">Jump</text>
-        <text class="label" x="470" y="395">Set</text>
-        <text class="label" x="270" y="535">Pass</text>
-        <text class="label" x="95" y="425">Defense</text>
-        <text class="label" x="50" y="160">Block</text>
+        <div id="team-players"></div>
 
-        <!-- ÁREA -->
-        <polygon id="statsPolygon" class="stats-area"></polygon>
+    </div>
 
-    </svg>
+    <div class="field">
 
-    <div class="panel" id="controls">
+        <div class="net"></div>
+        <div class="attack-line-left"></div>
+        <div class="attack-line-right"></div>
+        <div class="players">
 
-        <!-- HEADER -->
-        <div class="panel-header">
-
-            <div class="info-box">
-                <span class="info-title">Média</span>
-                <span class="info-value" id="mediaLabel">0</span>
+            <div class="Player pos-1" data-number="1" id="player-1">
+                LW
             </div>
 
-            <div class="info-box">
-                <span class="info-title">Rank</span>
-                <span class="info-value" id="classLabel">D</span>
+
+            <div class="Player pos-2" data-number="2" id="player-2">
+                CM
             </div>
+
+
+            <div class="Player pos-3" data-number="3" id="player-3">
+                RW
+            </div>
+
 
         </div>
 
     </div>
 
-</div>
 
-<script>
+    <script>
+        const equipes = ["Barreiro", "Setúbal", "Corroios"];
 
-const stats = {
-    Spike: 50,
-    Jump: 50,
-    Set: 50,
-    Pass: 50,
-    Defense: 50,
-    Block: 50
-};
+        let personagens = [];
+        let jogadoresEscolhidos = [];
 
-const maxStat = 100;
+        const posicoes = ["LW", "CM", "RW"];
+        let posicaoAtual = 0;
 
-const directions = [
-    { key:"Spike", angle:-90 },
-    { key:"Jump", angle:-30 },
-    { key:"Set", angle:30 },
-    { key:"Pass", angle:90 },
-    { key:"Defense", angle:150 },
-    { key:"Block", angle:210 }
-];
 
-const centerX = 300;
-const centerY = 280;
-const radius = 200;
+        // ======================================================
+        // CARREGAR JOGADORES DO TXT
+        // ======================================================
 
-const polygon = document.getElementById("statsPolygon");
-const controls = document.getElementById("controls");
+        async function carregarPersonagens() {
 
-function restartStats(){
+            try {
 
-    for(const key in stats){
+                const resposta = await fetch("players.txt");
 
-        stats[key] = 0;
+                const texto = await resposta.text();
 
-        document.getElementById(`${key}-value`).innerText = 0;
+                const linhas = texto.split("\n");
 
-        const input = document.getElementById(`${key}-input`);
+                personagens = [];
 
-        if(input){
-            input.value = 0;
+                linhas.forEach(linha => {
+
+                    if (linha.trim() === "") {
+                        return;
+                    }
+
+                    const dados = linha.trim().split(";");
+
+                    personagens.push({
+
+                        id: dados[0],
+
+                        nome: dados[1],
+
+                        ataque: Number(dados[2]),
+
+                        servico: Number(dados[3]),
+
+                        passe: Number(dados[4]),
+
+                        iq: Number(dados[5]),
+
+                        defesa: Number(dados[6]),
+
+                        fisico: Number(dados[7]),
+
+                        overall: Number(dados[8]),
+
+                        posicao1: dados[9],
+
+                        posicao2: dados[10],
+
+                        time: dados[11]
+
+                    });
+
+                });
+
+                console.log("Jogadores carregados:", personagens);
+
+                // Começar o jogo
+                sortearNovaEquipe();
+
+            } catch (erro) {
+
+                console.error("Erro ao carregar players.txt:", erro);
+
+            }
         }
-    }
 
-    updatePolygon();
-    atualizarMedia();
-}
 
-function mediaTotal(stats){
+        // ======================================================
+        // SORTEAR EQUIPA
+        // ======================================================
 
-    const soma = Object.values(stats).reduce((acc, valor) => {
-        return acc + valor;
-    }, 0);
+        function sortearEquipe() {
 
-    return (soma / 6).toFixed(2);
-}
+            const indice = Math.floor(Math.random() * equipes.length);
 
-function atualizarMedia(){
+            return equipes[indice];
+        }
 
-    const media = Number(mediaTotal(stats));
 
-    document.getElementById("mediaLabel").textContent = media;
+        // ======================================================
+        // SORTEAR NOVA EQUIPA
+        // ======================================================
 
-    let rank = "";
+        function sortearNovaEquipe() {
 
-    if(media < 1){
-        rank = "F";
-    }
-    else if(media <= 20){
-        rank = "D";
-    }
-    else if(media <= 30){
-        rank = "D+";
-    }
-    else if(media <= 40){
-        rank = "C";
-    }
-    else if(media <= 50){
-        rank = "C+";
-    }
-    else if(media <= 60){
-        rank = "B";
-    }
-    else if(media <= 70){
-        rank = "B+";
-    }
-    else if(media <= 80){
-        rank = "A";
-    }
-    else if(media <= 90){
-        rank = "A+";
-    }
-    else if(media < 100){
-        rank = "S";
-    }
-    else{
-        rank = "S+";
-    }
+            let novaEquipe;
 
-    document.getElementById("classLabel").textContent = rank;
-}
+            do {
 
-function createControls(){
+                novaEquipe = sortearEquipe();
 
-    for(const key in stats){
+            } while (
+                novaEquipe ===
+                document.getElementById("team-name").textContent
+            );
 
-        const div = document.createElement("div");
+            mostrarEquipe(novaEquipe);
 
-        div.className = "stat";
+            mostrarJogadoresDaEquipe(novaEquipe);
+        }
 
-        div.innerHTML = `
-            <div class="stat-header">
-                <span>${key}</span>
-                <span id="${key}-value">${stats[key]}</span>
-            </div>
 
-            <input
-                id="${key}-input"
-                class="stat-input"
-                type="number"
-                min="0"
-                max="${maxStat}"
-                value="${stats[key]}"
-                oninput="setStat('${key}', this.value)"
-            >
+        // ======================================================
+        // MOSTRAR NOME DA EQUIPA
+        // ======================================================
 
-            <div class="buttons">
-                <button class="minus" onclick="changeStat('${key}', -1)">-</button>
-                <button class="plus" onclick="changeStat('${key}', 1)">+</button>
-            </div>
-        `;
+        function mostrarEquipe(equipe) {
 
-        controls.appendChild(div);
-    }
+            const teamName = document.getElementById("team-name");
 
-    const restartBtn = document.createElement("button");
+            if (teamName) {
 
-    restartBtn.className = "restart";
-    restartBtn.innerText = "Restart";
+                teamName.textContent = equipe;
 
-    restartBtn.onclick = restartStats;
+            }
 
-    controls.appendChild(restartBtn);
-}
+            console.log("Equipa sorteada:", equipe);
+        }
 
-function setStat(key, value){
 
-    let newValue = parseInt(value);
+        // ======================================================
+        // VERIFICAR SE O JOGADOR PODE JOGAR NA POSIÇÃO
+        // ======================================================
 
-    if(isNaN(newValue))
-        newValue = 0;
+        function podeJogarNaPosicao(jogador, posicao) {
 
-    if(newValue < 0)
-        newValue = 0;
+            const posicao1 = jogador.posicao1
+                .trim()
+                .toUpperCase();
 
-    if(newValue > maxStat)
-        newValue = maxStat;
+            const posicao2 = jogador.posicao2
+                .trim()
+                .toUpperCase();
 
-    stats[key] = newValue;
+            // Verifica as duas posições
+            if (posicao1 === posicao) {
+                return true;
+            }
 
-    document.getElementById(`${key}-value`).innerText = newValue;
+            if (posicao2 === posicao) {
+                return true;
+            }
 
-    updatePolygon();
-    atualizarMedia();
-}
+            return false;
+        }
 
-function changeStat(key, amount){
 
-    stats[key] += amount;
+        // ======================================================
+        // VERIFICAR SE O JOGADOR JÁ FOI ESCOLHIDO
+        // ======================================================
 
-    if(stats[key] < 0)
-        stats[key] = 0;
+        function jogadorJaEscolhido(jogador) {
 
-    if(stats[key] > maxStat)
-        stats[key] = maxStat;
+            return jogadoresEscolhidos.some(
+                jogadorEscolhido =>
+                    jogadorEscolhido.id === jogador.id
+            );
+        }
 
-    document.getElementById(`${key}-value`).innerText = stats[key];
 
-    document.getElementById(`${key}-input`).value = stats[key];
+        // ======================================================
+        // MOSTRAR JOGADORES DA EQUIPA
+        // ======================================================
 
-    updatePolygon();
-    atualizarMedia();
-}
+        function mostrarJogadoresDaEquipe(equipe) {
 
-function updatePolygon(){
+            const container =
+                document.getElementById("team-players");
 
-    const points = directions.map(dir => {
+            if (!container) {
+                console.error(
+                    "Não foi encontrado o elemento #team-players"
+                );
+                return;
+            }
 
-        const value = stats[dir.key];
+            // Limpar jogadores da equipa anterior
+            container.innerHTML = "";
 
-        const percent = value / maxStat;
+            // Procurar jogadores da equipa sorteada
+            const jogadoresDaEquipe = personagens.filter(
+                jogador => jogador.time.trim() === equipe.trim()
+            );
 
-        const r = radius * percent;
+            console.log(
+                "Jogadores da equipa " + equipe + ":",
+                jogadoresDaEquipe
+            );
 
-        const angle = (Math.PI / 180) * dir.angle;
 
-        const x = centerX + Math.cos(angle) * r;
+            // Criar cartão para cada jogador
+            jogadoresDaEquipe.forEach(jogador => {
 
-        const y = centerY + Math.sin(angle) * r;
+                const jogadorDiv =
+                    document.createElement("div");
 
-        return `${x},${y}`;
-    });
+                jogadorDiv.classList.add("character");
 
-    polygon.setAttribute("points", points.join(" "));
-}
 
-createControls();
-updatePolygon();
-atualizarMedia();
+                // Nome do jogador
+                jogadorDiv.textContent = jogador.nome;
 
-</script>
+
+                // Verificar se já foi escolhido
+                const jaEscolhido =
+                    jogadorJaEscolhido(jogador);
+
+
+                // Verificar se pode jogar na posição atual
+                const podeJogar =
+                    podeJogarNaPosicao(
+                        jogador,
+                        posicoes[posicaoAtual]
+                    );
+
+
+                // ==================================================
+                // JOGADOR INDISPONÍVEL
+                // ==================================================
+
+                if (jaEscolhido || !podeJogar) {
+
+                    jogadorDiv.classList.add(
+                        "character-disabled"
+                    );
+
+                    jogadorDiv.style.cursor = "not-allowed";
+
+                }
+
+
+                // ==================================================
+                // JOGADOR DISPONÍVEL
+                // ==================================================
+
+                else {
+
+                    jogadorDiv.addEventListener(
+                        "click",
+                        function () {
+
+                            escolherJogador(jogador);
+
+                        }
+                    );
+
+                }
+
+
+                // Adicionar ao ecrã
+                container.appendChild(jogadorDiv);
+
+            });
+
+        }
+
+
+        // ======================================================
+        // ESCOLHER JOGADOR
+        // ======================================================
+
+        function escolherJogador(jogador) {
+
+            // Segurança: verificar novamente se pode jogar
+            if (
+                !podeJogarNaPosicao(
+                    jogador,
+                    posicoes[posicaoAtual]
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            // Segurança: impedir escolher o mesmo jogador
+            if (jogadorJaEscolhido(jogador)) {
+
+                return;
+
+            }
+
+
+            console.log(
+                "Jogador escolhido:",
+                jogador.nome
+            );
+
+            console.log(
+                "Posição:",
+                posicoes[posicaoAtual]
+            );
+
+
+            // Adicionar aos escolhidos
+            jogadoresEscolhidos.push(jogador);
+
+
+            // Colocar jogador no campo
+            colocarJogadorNoCampo(
+                jogador,
+                posicaoAtual
+            );
+
+
+            // Avançar para a próxima posição
+            posicaoAtual++;
+
+
+            // ==================================================
+            // VERIFICAR SE JÁ COMPLETOU A EQUIPA
+            // ==================================================
+
+            if (posicaoAtual >= posicoes.length) {
+
+                terminarEquipe();
+
+                return;
+
+            }
+
+
+            // ==================================================
+            // SORTEAR NOVA EQUIPA
+            // ==================================================
+
+            sortearNovaEquipe();
+
+        }
+
+
+        // ======================================================
+        // COLOCAR JOGADOR NO CAMPO
+        // ======================================================
+
+        function colocarJogadorNoCampo(
+            jogador,
+            posicao
+        ) {
+
+            const jogadorCampo =
+                document.getElementById(
+                    "player-" + (posicao + 1)
+                );
+
+
+            if (!jogadorCampo) {
+
+                console.error(
+                    "Não foi encontrado player-" +
+                    (posicao + 1)
+                );
+
+                return;
+
+            }
+
+
+            // Alterar nome no campo
+            jogadorCampo.textContent =
+                jogador.nome;
+
+
+            // Guardar o ID do jogador
+            jogadorCampo.dataset.playerId =
+                jogador.id;
+
+
+            // Guardar a posição
+            jogadorCampo.dataset.position =
+                posicoes[posicao];
+
+
+            // Mostrar também o número original
+            jogadorCampo.dataset.number =
+                posicao + 1;
+
+
+            // Retirar o texto antigo
+            jogadorCampo.classList.add(
+                "player-selected"
+            );
+
+
+            console.log(
+                jogador.nome +
+                " colocado em " +
+                posicoes[posicao]
+            );
+
+        }
+
+
+        // ======================================================
+        // TERMINAR EQUIPA
+        // ======================================================
+
+        function terminarEquipe() {
+
+            console.log(
+                "=============================="
+            );
+
+            console.log(
+                "EQUIPA COMPLETA!"
+            );
+
+            console.log(
+                "=============================="
+            );
+
+
+            jogadoresEscolhidos.forEach(
+                (jogador, index) => {
+
+                    console.log(
+                        posicoes[index] +
+                        ": " +
+                        jogador.nome
+                    );
+
+                }
+            );
+
+
+            // Mostrar mensagem no ecrã
+            const teamName =
+                document.getElementById("team-name");
+
+            if (teamName) {
+
+                teamName.textContent =
+                    "EQUIPA COMPLETA";
+
+            }
+
+
+            // Impedir novos jogadores
+            const container =
+                document.getElementById("team-players");
+
+            if (container) {
+
+                container.innerHTML =
+                    "<div class='team-complete'>" +
+                    "Equipa completa!" +
+                    "</div>";
+
+            }
+
+        }
+
+
+        // ======================================================
+        // INICIAR JOGO
+        // ======================================================
+
+        
+        document.getElementById("start-game").addEventListener("click", function () {
+
+            carregarPersonagens();
+
+            this.style.display = "none";
+
+        });
+    </script>
+
 
 </body>
 </html>
