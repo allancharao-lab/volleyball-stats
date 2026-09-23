@@ -603,6 +603,7 @@ body {
         let jogadoresEscolhidos = [];
 
         const posicoes = ["LW", "CM", "RW"];
+        let posicaoEscolhida;
         let posicaoAtual = 0;
 
 
@@ -848,10 +849,10 @@ body {
         // ESCOLHER JOGADOR
         // ======================================================
 
-        function escolherJogador(jogador) {
+        function escolherJogador(jogador, posicao) {
 
             // Segurança: verificar novamente se pode jogar
-            if (!podeJogarNaPosicao(jogador,posicoes[posicaoAtual])) {
+            if (!podeJogarNaPosicao(jogador,posicoes[posicao])) {
                 return;
             }
             // Segurança: impedir escolher o mesmo jogador
@@ -859,20 +860,13 @@ body {
                 return;
             }
             console.log("Jogador escolhido:",jogador.nome);
-            console.log("Posição:",posicoes[posicaoAtual]);
+            console.log("Posição:",posicoes[posicao]);
             // Adicionar aos escolhidos
             jogadoresEscolhidos.push(jogador);
             // Colocar jogador no campo
-            colocarJogadorNoCampo(
-                jogador,
-                posicaoEscolhida
-            );
-
-
+            colocarJogadorNoCampo(jogador,posicao);
             // Avançar para a próxima posição
             posicaoAtual++;
-
-
             // ==================================================
             // VERIFICAR SE JÁ COMPLETOU A EQUIPA
             // ==================================================
@@ -898,12 +892,7 @@ body {
         // ======================================================
         // COLOCAR JOGADOR NO CAMPO
         // ======================================================
-        function colocarJogadorNoCampo(
-            jogador,
-            posicaoCampo,
-            posicaoEscolhida
-        ) {
-
+        function colocarJogadorNoCampo(jogador,posicaoCampo,posicaoEscolhida) {
             const jogadorCampo = document.getElementById(
                 "player-" + (posicaoCampo + 1)
             );
@@ -974,9 +963,7 @@ body {
                 botao.textContent = posicao;
 
                 botao.addEventListener("click", function () {
-
                     escolherJogador(jogador, posicao);
-
                     overlay.remove();
                 });
 
