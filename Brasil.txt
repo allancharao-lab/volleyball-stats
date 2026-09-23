@@ -1,0 +1,8 @@
+Brasil;
+Bruninho;Setter;77;74;92;87;83;82;190;
+Wallace de souza;Opposite Hitter;93;91;71;77;81;89;84;198;
+Lucas Loh;Outside Hitter;86;84;72;83;84;81;82,195;
+Douglas Souza;Outside Hitter;89;91;70;85;86;78;83;199;
+Isac Santos;Middle Hitter;88;77;71;74;73;92;79;208;
+Éder Carbonera;Middle Hitter;91;82;65;68;69;96;79;205;
+Thales Hoss;Líbero;65;67;75;90;93;63;76;190;
