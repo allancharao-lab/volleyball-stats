@@ -351,7 +351,8 @@ body {
             transform: translateY(-50%);
 
             width: 220px;
-            height: 150px;
+            min-height: 250px;
+            height: auto;
 
             background: #181818;
 
@@ -390,6 +391,65 @@ body {
 
             color: #f5c542;
         }
+
+        .character-disabled {
+
+            opacity: 0.35;
+
+            cursor: not-allowed;
+
+            filter: grayscale(100%);
+        }
+
+        #team-players {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            max-height: 300px;
+
+            overflow-y: auto;
+        }
+
+
+        .character {
+
+            width: 90%;
+
+            padding: 8px;
+
+            background: #292929;
+
+            border: 2px solid #f5c542;
+
+            border-radius: 6px;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .character:hover {
+
+            background: #3a3a3a;
+
+            transform: scale(1.03);
+        }
+
 
         .character-disabled {
 
@@ -629,27 +689,51 @@ body {
                 document.getElementById("team-players");
 
             if (!container) {
+
                 console.error(
                     "Não foi encontrado o elemento #team-players"
                 );
+
                 return;
             }
 
-            // Limpar jogadores da equipa anterior
+            // Limpar jogadores anteriores
             container.innerHTML = "";
 
-            // Procurar jogadores da equipa sorteada
+            // Procurar jogadores da equipa
             const jogadoresDaEquipe = personagens.filter(
-                jogador => jogador.time.trim() === equipe.trim()
+                jogador =>
+                    jogador.time.trim().toLowerCase() ===
+                    equipe.trim().toLowerCase()
             );
 
             console.log(
-                "Jogadores da equipa " + equipe + ":",
+                "Equipa sorteada:",
+                equipe
+            );
+
+            console.log(
+                "Jogadores encontrados:",
                 jogadoresDaEquipe
             );
 
+            console.log(
+                "Quantidade:",
+                jogadoresDaEquipe.length
+            );
 
-            // Criar cartão para cada jogador
+
+            // Se não encontrou jogadores
+            if (jogadoresDaEquipe.length === 0) {
+
+                container.innerHTML =
+                    "<div>Nenhum jogador encontrado.</div>";
+
+                return;
+            }
+
+
+            // Criar jogador por jogador
             jogadoresDaEquipe.forEach(jogador => {
 
                 const jogadorDiv =
@@ -657,9 +741,8 @@ body {
 
                 jogadorDiv.classList.add("character");
 
-
-                // Nome do jogador
-                jogadorDiv.textContent = jogador.nome;
+                jogadorDiv.textContent =
+                    jogador.nome;
 
 
                 // Verificar se já foi escolhido
@@ -675,20 +758,40 @@ body {
                     );
 
 
-                // ==================================================
-                // JOGADOR INDISPONÍVEL
-                // ==================================================
-
+                // Jogador indisponível
                 if (jaEscolhido || !podeJogar) {
 
                     jogadorDiv.classList.add(
                         "character-disabled"
                     );
 
-                    jogadorDiv.style.cursor = "not-allowed";
+                    jogadorDiv.title =
+                        "Este jogador não pode ocupar " +
+                        posicoes[posicaoAtual];
 
                 }
 
+
+                // Jogador disponível
+                else {
+
+                    jogadorDiv.addEventListener(
+                        "click",
+                        function () {
+
+                            escolherJogador(jogador);
+
+                        }
+                    );
+
+                }
+
+
+                container.appendChild(jogadorDiv);
+
+            });
+
+        }
 
                 // ==================================================
                 // JOGADOR DISPONÍVEL
