@@ -3,8 +3,8 @@
 3;Micael;88;90;92;85;84;73;85;CM;RW;Barreiro;
 4;Diego;87;88;73;76;75;93;82;RW;LW;Barreiro;
 6;Nuno;75;80;79;77;78;92;80;RW;CM;Setúbal;
-7;Gabriel;72;80;82;81;73;82;78;CM;none;Setúbal;
+7;Gabriel;72;80;82;81;73;82;78;CM;LW;Setúbal;
 8;Yuriy;71;72;77;74;78;90;77;CM;none;Setúbal
 9;Rodrigo;85;75;67;80;67;84;76;LW;none;Corroios;
 10;Tiago;70;75;69;71;65;96;74;LW;RW;Corroios;
-11;Madalena;68;66;67;65;69;67;67;CM;none;Corroios;
+11;Pedro;68;66;67;65;69;67;67;CM;none;Corroios;
