@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="icone.png">
-    <title>Volleyball Game</title>
+    <title>PnecballA0</title>
 
     <style>
    * {
@@ -551,6 +551,42 @@ body {
         .comecarJogo:hover{
         background: #666;
         }
+
+        .texto-dourado {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            /* Gradiente com tons de dourado */
+            background: linear-gradient(45deg, #b38728, #fbf5b7, #bf953f, #fcf6ba, #b38728);
+            background-size: 400% 100%;
+            
+            
+            /* Aplica o gradiente apenas ao texto */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            
+            /* Aplica a animação */
+            animation: brilhaOuro 6s linear infinite;
+            }
+
+            /* Cria o movimento do brilho dourado */
+            @keyframes brilhaOuro {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 50% 0%;
+            }
+            }   
+
+            .Player span {
+                position: relative;
+                z-index: 2;
+            }
     </style>
 
 </head>
@@ -1019,6 +1055,8 @@ body {
                 return;
             }
 
+            const nomeJogador = document.createElement("span");
+
             jogadorCampo.textContent =
                 jogador.nome;
 
@@ -1034,6 +1072,15 @@ body {
             jogadorCampo.classList.add(
                 "player-selected"
             );
+
+            
+    if (jogador.overall >= 90) {
+
+        nomeJogador.classList.add(
+            "texto-dourado"
+        );
+
+    }
 
             console.log(
                 jogador.nome +
