@@ -297,43 +297,29 @@ body {
 ========================= */
 
         .team-selection {
-
             position: absolute;
-
-            left: 40px;
+            left: 260px;
             top: 50%;
-
             transform: translateY(-50%);
-
             width: 220px;
             min-height: 95%;
             height: auto;
-
             background: #181818;
-
             border: 3px solid #f5c542;
-
             border-radius: 10px;
-
             color: white;
-
             display: flex;
             flex-direction: column;
-
             justify-content: center;
             align-items: center;
-
             text-align: center;
-
             box-shadow:
                 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
 
         .team-selection h2 {
-
             font-size: 18px;
-
             margin-bottom: 15px;
         }
 
@@ -434,19 +420,12 @@ body {
 
         .position-popup {
             width: 260px;
-
             padding: 25px;
-
             background: #292929;
-
             border: 2px solid #f5c542;
-
             border-radius: 10px;
-
             text-align: center;
-
             color: white;
-
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -536,6 +515,33 @@ body {
                 position: relative;
                 z-index: 2;
             }
+
+        .team-info{
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 220px;
+            min-height: 95%;
+            height: auto;
+            background: #181818;
+            border: 3px solid #f5c542;
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        
+        .team-info h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
     </style>
 
 </head>
@@ -543,7 +549,7 @@ body {
 
 <body>
 
-     <div class="team-selection">
+    <div class="team-selection">
 
         <h2>Equipa sorteada</h2>
 
@@ -556,6 +562,12 @@ body {
         </button>
 
         <div id="team-players"></div>
+
+    </div>
+
+
+    <div class="team-info">
+        <h2>Team info</h2>
 
     </div>
 
