@@ -794,7 +794,7 @@ body {
         }
 
         function jogadorJaEscolhido(jogador) {
-            return jogadoresEscolhidos.some(jogadorEscolhido => jogadorEscolhido.equipe === jogador.equipe || jogadorEscolhido.nome  === jogador.nome);
+            return jogadoresEscolhidos.some(jogadorEscolhido => jogadorEscolhido.equipe === jogador.equipe && jogadorEscolhido.nome  === jogador.nome);
         }
 
 
