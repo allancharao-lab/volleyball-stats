@@ -1025,6 +1025,7 @@ body {
 
             if (jogador.overall >= 90) {
                 nomeJogador.classList.add("texto-dourado");
+                document.getElementById("team-leftWinger").classList.add("texto-dourado");
             }
 
             jogadorCampo.appendChild(nomeJogador);
@@ -1039,11 +1040,28 @@ body {
             console.log(jogador.nome + " colocado em " + posicaoEscolhida);
 
             if (posicaoEscolhida == "LW"){
-                document.getElementById("team-leftWinger").textContent = "ola";
+                document.getElementById("team-leftWinger").textContent = "LeftWinger: "+jogador.nome +" " + jogador.overall;
+                
+                if (jogador.overall >= 90) {
+                    document.getElementById("team-leftWinger").classList.add("texto-dourado");
+                }
+            
             }
 
             else if (posicaoEscolhida == "CM"){
+                document.getElementById("team-leftWinger").textContent = "LeftWinger: "+jogador.nome +" " + jogador.overall;
                 
+                if (jogador.overall >= 90) {
+                    document.getElementById("team-centralMidfilder").classList.add("texto-dourado");
+                }
+            }
+
+            else{
+                document.getElementById("team-leftWinger").textContent = "LeftWinger: "+jogador.nome +" " + jogador.overall;
+                
+                if (jogador.overall >= 90) {
+                    document.getElementById("team-rightWinger").classList.add("texto-dourado");
+                }
             }
         }
             function escolherPosicaoDoJogador(jogador) {
