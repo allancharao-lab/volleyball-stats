@@ -794,9 +794,7 @@ body {
         }
 
         function jogadorJaEscolhido(jogador) {
-            return jogadoresEscolhidos.some(
-            jogadorEscolhido => jogadorEscolhido.id === jogador.id
-            );
+            return jogadoresEscolhidos.some(jogadorEscolhido => jogadorEscolhido.equipe === jogador.equipe || jogadorEscolhido.nome  === jogador.nome);
         }
 
 
@@ -1015,11 +1013,7 @@ body {
             const indiceCampo = posicoes.indexOf(posicaoEscolhida);
 
             // Colocar jogador no campo
-            colocarJogadorNoCampo(
-                jogador,
-                indiceCampo,
-                posicaoEscolhida
-            );
+            colocarJogadorNoCampo(jogador,indiceCampo,posicaoEscolhida);
 
             // Verificar se já temos os 3 jogadores
             if (posicoesOcupadas.length >= posicoes.length) {
