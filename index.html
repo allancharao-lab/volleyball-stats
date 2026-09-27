@@ -611,6 +611,7 @@ body {
 
         const posicoes = ["LW", "CM", "RW"];
         let posicoesOcupadas = [];
+        let overallSum = 0
 
 
         // ======================================================
@@ -1062,7 +1063,9 @@ body {
                     document.getElementById("team-rightWinger").classList.add("texto-dourado");
                 }
             }
-
+            
+            overallSum = overallSum + jogador.overall;
+            document.getElementsById("team-overall").Number = overallSum/3;
 
         }
             function escolherPosicaoDoJogador(jogador) {
