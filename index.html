@@ -1040,10 +1040,7 @@ body {
 
         function colocarJogadorNoCampo(jogador,posicaoCampo,posicaoEscolhida) {
 
-            const jogadorCampo =
-                document.getElementById(
-                    "player-" + (posicaoCampo + 1)
-                );
+            const jogadorCampo = document.getElementById("player-" + (posicaoCampo + 1));
 
             if (!jogadorCampo) {
 
@@ -1055,38 +1052,27 @@ body {
                 return;
             }
 
+            jogadorCampo.innerHTML = "";
+
             const nomeJogador = document.createElement("span");
 
-            jogadorCampo.textContent =
-                jogador.nome;
+            noemJogador.textContent = jogador.nome;
 
-            jogadorCampo.dataset.playerId =
-                jogador.id;
+            if (jogador.overall >= 90) {
+                nomeJogador.classList.add("texto-dourado");
+            }
 
-            jogadorCampo.dataset.position =
-                posicaoEscolhida;
+            jogadorCampo.appendChild(nomeJogador);
 
-            jogadorCampo.dataset.number =
-                posicaoCampo + 1;
+            jogadorCampo.dataset.playerId = jogador.id;
 
-            jogadorCampo.classList.add(
-                "player-selected"
-            );
+            jogadorCampo.dataset.position = posicaoEscolhida;
 
-            
-    if (jogador.overall >= 90) {
+            jogadorCampo.dataset.number = posicaoCampo + 1;
 
-        nomeJogador.classList.add(
-            "texto-dourado"
-        );
-
-    }
-
+            jogadorCampo.classList.add("player-selected");
             console.log(
-                jogador.nome +
-                " colocado em " +
-                posicaoEscolhida
-            );
+                jogador.nome + " colocado em " + posicaoEscolhida);
         }
             function escolherPosicaoDoJogador(jogador) {
 
