@@ -569,9 +569,9 @@ body {
     <div class="team-info">
         <h2>Team info</h2>
         <h2 id="team-overall">Overall: ?</h2>
-        <h2 id="team-leftWinger">Left Winger: ?</h2>
-        <h2 id="team-centralMidfilder">Central Midfilder: ?</h2>
-        <h2 id="team-rightWinger">Right Winger: ?</h2>
+        <h2 id="team-leftWinger">LW: ?</h2>
+        <h2 id="team-centralMidfilder">CM: ?</h2>
+        <h2 id="team-rightWinger">RW: ?</h2>
         
 
     </div>
@@ -1039,7 +1039,7 @@ body {
             console.log(jogador.nome + " colocado em " + posicaoEscolhida);
 
             if (posicaoEscolhida == "LW"){
-                document.getElementById("team-leftWinger").textContent = "Left Winger: "+jogador.nome +" " + jogador.overall;
+                document.getElementById("team-leftWinger").textContent = "LW: "+jogador.nome +" " + jogador.overall;
                 
                 if (jogador.overall >= 90) {
                     document.getElementById("team-leftWinger").classList.add("texto-dourado");
@@ -1048,7 +1048,7 @@ body {
             }
 
             else if (posicaoEscolhida == "CM"){
-                document.getElementById("team-centralMidfilder").textContent = "Central midfilder: "+jogador.nome +" " + jogador.overall;
+                document.getElementById("team-centralMidfilder").textContent = "CM: "+jogador.nome +" " + jogador.overall;
                 
                 if (jogador.overall >= 90) {
                     document.getElementById("team-centralMidfilder").classList.add("texto-dourado");
@@ -1056,7 +1056,7 @@ body {
             }
 
             else{
-                document.getElementById("team-rightWinger").textContent = "Right Winger: "+jogador.nome +" " + jogador.overall;
+                document.getElementById("team-rightWinger").textContent = "RW: "+jogador.nome +" " + jogador.overall;
                 
                 if (jogador.overall >= 90) {
                     document.getElementById("team-rightWinger").classList.add("texto-dourado");
