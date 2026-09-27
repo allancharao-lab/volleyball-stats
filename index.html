@@ -572,36 +572,24 @@ body {
         <h2 id="team-leftWinger">LW: ?</h2>
         <h2 id="team-centralMidfilder">CM: ?</h2>
         <h2 id="team-rightWinger">RW: ?</h2>
-        
-
     </div>
 
     <div class="field">
-
         <div class="net"></div>
         <div class="attack-line-left"></div>
         <div class="attack-line-right"></div>
         <div class="players">
-
             <div class="Player pos-1" data-number="1" id="player-1">
                 LW
             </div>
-
-
             <div class="Player pos-2" data-number="2" id="player-2">
                 CM
             </div>
-
-
             <div class="Player pos-3" data-number="3" id="player-3">
                 RW
             </div>
-
-
         </div>
-
     </div>
-
 
     <script>
         const equipes = ["Barreiro 2026", "Setúbal 2025", "Corroios 2026", "Barreiro 2025", "Barreiro 2024"];
@@ -1065,7 +1053,7 @@ body {
             }
             
             overallSum = overallSum + jogador.overall;
-            document.getElementsById("team-overall").Number = overallSum/3;
+            document.getElementById("team-overall").textContent = overallSum/3;
 
         }
             function escolherPosicaoDoJogador(jogador) {
