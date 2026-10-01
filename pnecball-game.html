@@ -1876,45 +1876,20 @@ com melhor combinação:
 
 function escolherLevantador(jogadores, receptor) {
 
-    let candidatos =
-        jogadores.filter(
-            jogador =>
-                jogador.id !== receptor.id
-        );
+    // Retira o jogador que fez o primeiro toque
+    let candidatos = jogadores.filter(
+        jogador => jogador.id !== receptor.id
+    );
 
-
+    // Se não houver jogadores disponíveis
     if (candidatos.length === 0) {
-
         return null;
     }
 
+    // Escolhe aleatoriamente um dos dois jogadores
+    let indice = Math.floor(Math.random() * candidatos.length);
 
-    let melhor =
-        candidatos[0];
-
-
-    let melhorValor =
-        (melhor.passe * 0.6) +
-        (melhor.iq * 0.4);
-
-
-    candidatos.forEach(jogador => {
-
-        let valor =
-            (jogador.passe * 0.6) +
-            (jogador.iq * 0.4);
-
-
-        if (valor > melhorValor) {
-
-            melhor = jogador;
-
-            melhorValor = valor;
-        }
-    });
-
-
-    return melhor;
+    return candidatos[indice];
 }
 
 
@@ -2190,27 +2165,6 @@ function resolverAtaque(
 
 
     /*
-    BLOQUEIO / DEFESA MUITO BOA
-    */
-
-    if (diferenca <= -10) {
-
-        return {
-
-            tipo: "BLOQUEIO",
-
-            vencedor: defensor,
-
-            atacante: atacante,
-
-            valorAtaque: valorAtaque,
-
-            valorDefesa: valorDefesa
-        };
-    }
-
-
-    /*
     A BOLA CONTINUA EM JOGO
     */
 
@@ -2280,8 +2234,6 @@ function darPonto(
 
                 aces: 0,
 
-                bloqueios: 0,
-
                 assistencias: 0,
 
                 errosAtaque: 0,
@@ -2296,17 +2248,14 @@ function darPonto(
         }
 
 
-        estatisticas.pontos++;
-
-
         if (tipo === "ACE") {
-
+            estatisticas.pontos++;
             estatisticas.aces++;
         }
 
 
         if (tipo === "ATAQUE") {
-
+            estatisticas.pontos++;
             estatisticas.ataques++;
         }
         
@@ -2619,62 +2568,6 @@ function jogarRally() {
 
     /*
     =====================================================
-    BLOQUEIO
-    =====================================================
-    */
-
-    if (
-        resultadoAtaque.tipo === "BLOQUEIO"
-    ) {
-
-        /*
-        Quem bloqueou pertence à equipa defensora.
-        */
-
-        let equipaQueBloqueou =
-            equipaQueServe;
-
-
-        /*
-        Se quem recebeu o serviço atacou,
-        então quem bloqueou é a equipa que serviu.
-        */
-
-        if (
-            equipaQueRecebe === "jogador"
-        ) {
-
-            equipaQueBloqueou =
-                "adversario";
-
-        } else {
-
-            equipaQueBloqueou =
-                "jogador";
-        }
-
-
-        darPonto(
-            equipaQueBloqueou,
-            resultadoAtaque.vencedor,
-            "BLOQUEIO"
-        );
-
-
-        console.log(
-            resultadoAtaque.vencedor.nome +
-            " conseguiu o bloqueio!"
-        );
-
-
-        atualizarPlacar();
-
-        return;
-    }
-
-
-    /*
-    =====================================================
     RALLY CONTINUA
     =====================================================
 
@@ -2822,36 +2715,6 @@ function continuarRally(
         console.log(
             atacante.nome +
             " marcou no rally!"
-        );
-
-        return;
-    }
-
-
-    /*
-    BLOQUEIO
-    */
-
-    if (
-        resultadoAtaque.tipo === "BLOQUEIO"
-    ) {
-
-        let equipaDoBloqueio =
-            nomeEquipaDefensora === "jogador"
-                ? "adversario"
-                : "jogador";
-
-
-        darPonto(
-            equipaDoBloqueio,
-            resultadoAtaque.vencedor,
-            "BLOQUEIO"
-        );
-
-
-        console.log(
-            resultadoAtaque.vencedor.nome +
-            " bloqueou!"
         );
 
         return;
@@ -3312,8 +3175,6 @@ function inicializarEstatisticas(jogadores) {
                 ataques: 0,
 
                 aces: 0,
-
-                bloqueios: 0,
 
                 assistencias: 0,
 
