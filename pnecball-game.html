@@ -3021,8 +3021,6 @@ function verificarFimDeSet() {
     else if (adversarioPontos >= PONTOS_PARA_VENCER && adversarioPontos - jogadorPontos >= 2) {
         adversarioSets++;
         setTerminou = true;
-        
-
         console.log(
             equipaAdversaria +
             " GANHOU O SET!"
@@ -3039,10 +3037,7 @@ function verificarFimDeSet() {
             adversarioSets
         );
 
-
-        atualizarPlacarSemVerificarSet();
-    }
-
+        
         if (jogadores1set < 0){
             jogadores1set = jogadorPontos;
         }
@@ -3066,10 +3061,14 @@ function verificarFimDeSet() {
         }
 
         
+        
         jogadorPontos = 0;
 
         adversarioPontos = 0;
 
+
+        atualizarPlacarSemVerificarSet();
+    }
 
     return setTerminou;
 }
