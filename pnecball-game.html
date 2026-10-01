@@ -3335,9 +3335,7 @@ INICIALIZAR ESTATÍSTICAS
 =========================================================
 */
 
-function inicializarEstatisticas(
-    jogadores
-) {
+function inicializarEstatisticas(jogadores) {
 
     jogadores.forEach(
         jogador => {
@@ -3363,104 +3361,6 @@ function inicializarEstatisticas(
                 defesas: 0
             };
         }
-    );
-}
-
-
-/*
-=========================================================
-INICIALIZAR JOGO
-=========================================================
-
-Chama esta função depois de teres
-os jogadores escolhidos pelo utilizador.
-*/
-
-function iniciarJogo() {
-
-    /*
-    Reiniciar placar
-    */
-
-    jogadorPontos = 0;
-
-    adversarioPontos = 0;
-
-    jogadorSets = 0;
-
-    adversarioSets = 0;
-
-
-    /*
-    Limpar estatísticas anteriores
-    */
-
-    estatisticasJogadores = {};
-
-
-    /*
-    Sortear adversário
-    */
-
-    sortearEquipeAdversaria();
-
-
-    /*
-    Construir equipa adversária
-    */
-
-    construirEquipaAdversaria();
-
-
-    /*
-    Inicializar estatísticas da equipa
-    do jogador
-    */
-
-    inicializarEstatisticas(
-        jogadoresEscolhidos
-    );
-
-
-    /*
-    Inicializar estatísticas da
-    equipa adversária
-    */
-
-    inicializarEstatisticas(
-        jogadoresAdversarios
-    );
-
-
-    /*
-    Atualizar placar
-    */
-
-    atualizarPlacarSemVerificarSet();
-
-
-    console.log(
-        "=============================="
-    );
-
-    console.log(
-        "JOGO INICIADO"
-    );
-
-    console.log(
-        "Equipa do jogador:"
-    );
-
-    console.log(
-        jogadoresEscolhidos
-    );
-
-    console.log(
-        "Equipa adversária:"
-    );
-
-    console.log(
-        jogadoresAdversarios
     );
 }
 
@@ -3511,21 +3411,45 @@ function mostrarEstatisticas() {
     );
 }
 
-async function iniciarJogo() {
+    async function iniciarJogo() {
 
-    sortearEquipeAdversaria();
+        jogadorPontos = 0;
+        adversarioPontos = 0;
 
-    const sucesso = await construirEquipaAdversaria();
+        jogadorSets = 0;
+        adversarioSets = 0;
 
-    if (!sucesso) {
-        console.error("Não foi possível iniciar o jogo.");
-        return;
+        estatisticasJogadores = {};
+
+        sortearEquipeAdversaria();
+
+        const sucesso = await construirEquipaAdversaria();
+
+        if (!sucesso) {
+            console.error("Não foi possível iniciar o jogo.");
+            return;
+        }
+
+        // Estatísticas da equipa do jogador
+        inicializarEstatisticas(jogadoresEscolhidos);
+
+        // Estatísticas da equipa adversária
+        inicializarEstatisticas(jogadoresAdversarios);
+
+        atualizarPlacarSemVerificarSet();
+
+        console.log("==============================");
+        console.log("JOGO INICIADO");
+        console.log("==============================");
+
+        console.log("Equipa do jogador:");
+        console.log(jogadoresEscolhidos);
+
+        console.log("Equipa adversária:");
+        console.log(jogadoresAdversarios);
+
+        jogarRally();
     }
-
-    inicializarEstatisticas();
-
-    jogarRally();
-}
 </script>
 
 
