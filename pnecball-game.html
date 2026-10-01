@@ -3034,10 +3034,10 @@ function verificarFimDeSet() {
     else if (adversarioPontos >= PONTOS_PARA_VENCER && adversarioPontos - jogadorPontos >= 2) {
         adversarioSets++;
         setTerminou = true;
-        if (adversario1set >= 0){
+        if (adversario1set < 0){
             adversario1set = adversarioPontos;
         }
-        else if (adversario2set >= 0){
+        else if (adversario2set < 0){
             adversario2set = adversarioPontos;
 
         }
