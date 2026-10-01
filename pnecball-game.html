@@ -3013,37 +3013,15 @@ function verificarFimDeSet() {
     if (jogadorPontos >= PONTOS_PARA_VENCER && jogadorPontos - adversarioPontos >= 2) {
         jogadorSets++;
         setTerminou = true;
-        if (jogadores1set >= 0){
-            jogadores1set = jogadorPontos;
-        }
-        else if (jogadores2set >= 0){
-            jogadores2set = jogadorPontos;
-
-        }
-        else{
-            jogadores3set = jogadorPontos;
-        }
-
         console.log(
             "BARREIRO GANHOU O SET!"
         );
 
     }
-
-
     else if (adversarioPontos >= PONTOS_PARA_VENCER && adversarioPontos - jogadorPontos >= 2) {
         adversarioSets++;
         setTerminou = true;
-        if (adversario1set < 0){
-            adversario1set = adversarioPontos;
-        }
-        else if (adversario2set < 0){
-            adversario2set = adversarioPontos;
-
-        }
-        else{
-            adversario3set = adversarioPontos;
-        }
+        
 
         console.log(
             equipaAdversaria +
@@ -3069,6 +3047,28 @@ function verificarFimDeSet() {
 
         atualizarPlacarSemVerificarSet();
     }
+
+        if (jogadores1set >= 0){
+            jogadores1set = jogadorPontos;
+        }
+        else if (jogadores2set >= 0){
+            jogadores2set = jogadorPontos;
+
+        }
+        else{
+            jogadores3set = jogadorPontos;
+        }
+        
+        if (adversario1set < 0){
+            adversario1set = adversarioPontos;
+        }
+        else if (adversario2set < 0){
+            adversario2set = adversarioPontos;
+
+        }
+        else{
+            adversario3set = adversarioPontos;
+        }
 
 
     return setTerminou;
