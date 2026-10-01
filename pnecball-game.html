@@ -2309,11 +2309,10 @@ function darPonto(
 
             estatisticas.ataques++;
         }
+        
+        if (tipo === "ASSISTENCIA") {
 
-
-        if (tipo === "BLOQUEIO") {
-
-            estatisticas.bloqueios++;
+            estatisticas.assistencias++;
         }
     }
 
@@ -3040,12 +3039,8 @@ function continuarRallyLongo(
         resultadoAtaque.tipo === "ATAQUE"
     ) {
 
-        darPonto(
-            nomeEquipaAtacante,
-            atacante,
-            "ATAQUE"
-        );
-
+        darPonto(nomeEquipaAtacante,atacante,"ATAQUE");
+        darPonto(nomeEquipeAtacante,levantador,"ASSISTENCIA");
         return;
     }
 
@@ -3380,8 +3375,8 @@ function mostrarEstatisticas() {
                 " | ACE: " +
                 stats.aces +
 
-                " | Bloqueios: " +
-                stats.bloqueios
+                " | assistencias: " +
+                stats.assistencias
             );
         }
     );
@@ -3425,11 +3420,11 @@ function mostrarEstatisticas() {
         console.log(jogadoresAdversarios);
         do{
             jogarRally();
-        if (verificarFimDeSet == true){
-            jogadorPontos == 0;
-            adversarioPontos == 0;
-        }
-        }while(verificarFimDeJogo() == true);
+            if (verificarFimDeSet == true){
+                jogadorPontos == 0;
+                adversarioPontos == 0;
+            }
+        }while(verificarFimDeJogo() != true);
 
         mostrarEstatisticas();
     }
