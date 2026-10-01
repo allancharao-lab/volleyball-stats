@@ -1623,42 +1623,68 @@ Escolhe 3 jogadores aleatoriamente da equipa
 sorteada.
 */
 
-function construirEquipaAdversaria() {
+async function construirEquipaAdversaria() {
 
-    let disponiveis =
-        personagens.filter(
-            jogador =>
-                jogador.time === equipaAdversaria
-        );
+    const resposta = await fetch("players.txt");
 
-    jogadoresAdversarios = [];
+    const texto = await resposta.text();
 
-    while (
-        jogadoresAdversarios.length < 3 &&
-        disponiveis.length > 0
-    ) {
+    const linhas = texto.trim().split("\n");
 
-        let indice =
-            Math.floor(
-                Math.random() * disponiveis.length
-            );
+    const jogadores = [];
 
-        let jogador =
-            disponiveis[indice];
+    for (let i = 0; i < linhas.length; i++) {
 
-        jogadoresAdversarios.push(jogador);
+        const dados = linhas[i].trim().split(";");
 
-        disponiveis.splice(indice, 1);
+        if (dados.length < 12) {
+            continue;
+        }
+
+        jogadores.push({
+            id: dados[0],
+            nome: dados[1],
+            ataque: Number(dados[2]),
+            servico: Number(dados[3]),
+            passe: Number(dados[4]),
+            iq: Number(dados[5]),
+            defesa: Number(dados[6]),
+            fisico: Number(dados[7]),
+            overall: Number(dados[8]),
+            posicao1: dados[9],
+            posicao2: dados[10],
+            time: dados[11]
+        });
     }
 
-    console.log(
-        "Jogadores adversários:",
-        jogadoresAdversarios
+    // Jogadores pertencentes à equipa adversária
+    const jogadoresDaEquipa = jogadores.filter(
+        jogador => jogador.time === equipaAdversaria
     );
 
-    return jogadoresAdversarios;
-}
+    if (jogadoresDaEquipa.length < 3) {
 
+        console.error(
+            "A equipa " + equipaAdversaria +
+            " não tem jogadores suficientes."
+        );
+
+        jogadoresAdversarios = [];
+
+        return false;
+    }
+
+    // Baralhar jogadores
+    jogadoresDaEquipa.sort(() => Math.random() - 0.5);
+
+    // Escolher 3
+    jogadoresAdversarios = jogadoresDaEquipa.slice(0, 3);
+
+    console.log("Equipa adversária:", equipaAdversaria);
+    console.log("Jogadores adversários:", jogadoresAdversarios);
+
+    return true;
+}
 
 /*
 =========================================================
