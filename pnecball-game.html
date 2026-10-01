@@ -3231,7 +3231,7 @@ function mostrarEstatisticas() {
     console.log("Jogador " + jogadorSets + "|" + adversarioSets + " " + equipaAdversaria);
 
     console.log("Primeiro SET");
-    if (jogadores1set<adversario1set){
+    if (jogadores1set>adversario1set){
         console.log("Venceu");
     }
     else{
@@ -3240,7 +3240,7 @@ function mostrarEstatisticas() {
     console.log("Jogador " + jogadores1set + "|" + adversario1set + " " + equipaAdversaria);
 
     console.log("Segundo SET");
-    if (jogadores2set<adversario2set){
+    if (jogadores2set>adversario2set){
         console.log("Venceu");
     }
     else{
@@ -3249,7 +3249,7 @@ function mostrarEstatisticas() {
     console.log("Jogador " + jogadores2set + "|" + adversario2set + " " + equipaAdversaria);
 
     console.log("Terceiro SET");
-    if(jogadores3set<adversario3set){
+    if(jogadores3set>adversario3set){
         console.log("Venceu");
     }
     else{
@@ -3295,11 +3295,11 @@ function mostrarEstatisticas() {
         console.log("Equipa adversária:");
         console.log(jogadoresAdversarios);
         do{
-            jogarRally();
             if (verificarFimDeSet == true){
                 jogadorPontos == 0;
                 adversarioPontos == 0;
             }
+            jogarRally();
         }while(verificarFimDeJogo() != true);
 
         mostrarEstatisticas();
