@@ -603,7 +603,7 @@ body {
             ?
         </div>
 
-        <button onclick="jogarRally()" id="start-game" class="comecarJogo">
+        <button onclick="iniciarJogo()" id="start-game" class="comecarJogo">
             Começar jogo
         </button>
 
@@ -3511,7 +3511,21 @@ function mostrarEstatisticas() {
     );
 }
 
-jogarRally();
+async function iniciarJogo() {
+
+    sortearEquipeAdversaria();
+
+    const sucesso = await construirEquipaAdversaria();
+
+    if (!sucesso) {
+        console.error("Não foi possível iniciar o jogo.");
+        return;
+    }
+
+    inicializarEstatisticas();
+
+    jogarRally();
+}
 </script>
 
 
