@@ -1540,6 +1540,8 @@ let equipaAdversaria = null;
 
 let estatisticasJogadores = {};
 
+let jogadores1set = 0, jogadores2set = 0, jogadores3set = 0, adversario1set = 0, adversario2set = 0, adversario3set = 0;
+
 const PONTOS_PARA_VENCER = 15;
 
 
@@ -2818,9 +2820,7 @@ function continuarRallyLongo(
 
             darPonto(
                 outraEquipa,
-                jogador,
-                "ATAQUE"
-            );
+                jogador,"ATAQUE");
         }
 
 
@@ -3236,7 +3236,7 @@ function mostrarEstatisticas() {
 
     console.log("==============================");
     console.log("PLACAR");
-    console.log("Jogador " + jogadorSets + "|" + adversarioSets + " " + equipaAdversaria.nome);
+    console.log("Jogador " + jogadorSets + "|" + adversarioSets + " " + equipaAdversaria);
 }
 
     async function iniciarJogo() {
