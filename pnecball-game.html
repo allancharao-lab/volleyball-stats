@@ -2890,8 +2890,7 @@ function continuarRallyLongo(
     equipaA,
     equipaB,
     equipaAtual,
-    numeroTrocas
-) {
+    numeroTrocas) {
 
     const MAX_TROCAS = 5;
 
@@ -3035,12 +3034,10 @@ function continuarRallyLongo(
     ATAQUE VENCEDOR
     */
 
-    if (
-        resultadoAtaque.tipo === "ATAQUE"
-    ) {
+    if (resultadoAtaque.tipo === "ATAQUE") {
 
         darPonto(nomeEquipaAtacante,atacante,"ATAQUE");
-        darPonto(nomeEquipeAtacante,levantador,"ASSISTENCIA");
+        darPonto(nomeEquipaAtacante,levantador,"ASSISTENCIA");
         return;
     }
 
@@ -3055,12 +3052,7 @@ function continuarRallyLongo(
             : "jogador";
 
 
-    continuarRallyLongo(
-        novaEquipaDefensora,
-        novaEquipaAtacante,
-        proximaEquipa,
-        numeroTrocas + 1
-    );
+    continuarRallyLongo(novaEquipaDefensora,novaEquipaAtacante,proximaEquipa,numeroTrocas + 1);
 }
 
 
@@ -3380,6 +3372,10 @@ function mostrarEstatisticas() {
             );
         }
     );
+
+    console.log("==============================");
+    console.log("PLACAR");
+    console.log(equipe.nome + jogadorSets + "|" + adversarioSets + equipaAdversaria.nome);
 }
 
     async function iniciarJogo() {
