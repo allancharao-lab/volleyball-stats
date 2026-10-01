@@ -3051,30 +3051,6 @@ function continuarRallyLongo(
 
 
     /*
-    BLOQUEIO
-    */
-
-    if (
-        resultadoAtaque.tipo === "BLOQUEIO"
-    ) {
-
-        let equipaBloqueadora =
-            nomeEquipaAtacante === "jogador"
-                ? "adversario"
-                : "jogador";
-
-
-        darPonto(
-            equipaBloqueadora,
-            resultadoAtaque.vencedor,
-            "BLOQUEIO"
-        );
-
-        return;
-    }
-
-
-    /*
     Mais uma troca.
     */
 
@@ -3447,8 +3423,15 @@ function mostrarEstatisticas() {
 
         console.log("Equipa adversária:");
         console.log(jogadoresAdversarios);
+        do{
+            jogarRally();
+        if (verificarFimDeSet == true){
+            jogadorPontos == 0;
+            adversarioPontos == 0;
+        }
+        }while(verificarFimDeJogo() == true);
 
-        jogarRally();
+        mostrarEstatisticas();
     }
 </script>
 
