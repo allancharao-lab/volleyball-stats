@@ -1540,7 +1540,7 @@ let equipaAdversaria = null;
 
 let estatisticasJogadores = {};
 
-let jogadores1set = 0, jogadores2set = 0, jogadores3set = 0, adversario1set = 0, adversario2set = 0, adversario3set = 0;
+let jogadores1set = -1, jogadores2set = -1, jogadores3set = -1, adversario1set = -1, adversario2set = -1, adversario3set = -1;
 
 const PONTOS_PARA_VENCER = 15;
 
@@ -1697,10 +1697,7 @@ ESCOLHER SERVIDOR
 function escolherServidor(jogadores) {
 
     let indice =
-        Math.floor(
-            Math.random() * jogadores.length
-        );
-
+        Math.floor(Math.random() * jogadores.length);
     return jogadores[indice];
 }
 
@@ -2339,16 +2336,10 @@ function jogarRally() {
             "adversario";
 
 
-        servidor =
-            escolherServidor(
-                jogadoresEscolhidos
-            );
+        servidor = escolherServidor(jogadoresEscolhidos);
 
 
-        receptor =
-            escolherReceptor(
-                jogadoresAdversarios
-            );
+        receptor = escolherReceptor(jogadoresAdversarios);
 
     } else {
 
@@ -2359,16 +2350,10 @@ function jogarRally() {
             "jogador";
 
 
-        servidor =
-            escolherServidor(
-                jogadoresAdversarios
-            );
+        servidor = escolherServidor(jogadoresAdversarios);
 
 
-        receptor =
-            escolherReceptor(
-                jogadoresEscolhidos
-            );
+        receptor = escolherReceptor(jogadoresEscolhidos);
     }
 
 
@@ -3025,15 +3010,19 @@ function verificarFimDeSet() {
     let setTerminou = false;
 
 
-    if (
-        jogadorPontos >= PONTOS_PARA_VENCER &&
-        jogadorPontos - adversarioPontos >= 2
-    ) {
-
+    if (jogadorPontos >= PONTOS_PARA_VENCER && jogadorPontos - adversarioPontos >= 2) {
         jogadorSets++;
-
         setTerminou = true;
+        if (jogadores1set >= 0){
+            jogadores1set = jogadorPontos;
+        }
+        else if (jogadores2set >= 0){
+            jogadores2set = jogadorPontos;
 
+        }
+        else{
+            jogadores3set = jogadorPontos;
+        }
 
         console.log(
             "BARREIRO GANHOU O SET!"
@@ -3042,15 +3031,19 @@ function verificarFimDeSet() {
     }
 
 
-    else if (
-        adversarioPontos >= PONTOS_PARA_VENCER &&
-        adversarioPontos - jogadorPontos >= 2
-    ) {
-
+    else if (adversarioPontos >= PONTOS_PARA_VENCER && adversarioPontos - jogadorPontos >= 2) {
         adversarioSets++;
-
         setTerminou = true;
+        if (adversario1set >= 0){
+            adversario1set = jogadorPontos;
+        }
+        else if (adversario2set >= 0){
+            adversario2set = jogadorPontos;
 
+        }
+        else{
+            adversario3set = jogadorPontos;
+        }
 
         console.log(
             equipaAdversaria +
@@ -3237,6 +3230,33 @@ function mostrarEstatisticas() {
     console.log("==============================");
     console.log("PLACAR");
     console.log("Jogador " + jogadorSets + "|" + adversarioSets + " " + equipaAdversaria);
+
+    console.log("Primeiro SET");
+    if (jogadores1set<adversario1set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores1set + "|" + adversario1set + " " + equipaAdversaria);
+
+    console.log("Segundo SET");
+    if (jogadores2set<adversario2set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores2set + "|" + adversario2set + " " + equipaAdversaria);
+
+    console.log("Terceiro SET");
+    if(jogadores3set<adversario3set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores3set + "|" + adversario3set + " " + equipaAdversaria);
 }
 
     async function iniciarJogo() {
