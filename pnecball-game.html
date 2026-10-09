@@ -2204,6 +2204,7 @@ function darPonto(
 
         adversarioPontos++;
     }
+    console.log("Placar: Jogador " + jogadorPontos + " | " + adversarioPontos + "Adversario");
 
 
     /*
@@ -2697,6 +2698,7 @@ function continuarRally(
             atacante,
             "ATAQUE"
         );
+        darPonto()
 
 
         console.log(
@@ -2716,12 +2718,7 @@ function continuarRally(
     existe um limite de rallies internos.
     */
 
-    continuarRallyLongo(
-        equipaQueDefendeu,
-        equipaQueAtacou,
-        nomeEquipaDefensora,
-        1
-    );
+    continuarRallyLongo(equipaQueDefendeu,equipaQueAtacou,nomeEquipaDefensora,1);
 }
 
 
@@ -2783,11 +2780,7 @@ function continuarRallyLongo(
                 );
 
 
-            darPonto(
-                equipaAtual,
-                jogador,
-                "ATAQUE"
-            );
+            darPonto(equipaAtual,jogador,"ATAQUE");
 
         } else {
 
@@ -2798,14 +2791,8 @@ function continuarRallyLongo(
 
 
             let jogador =
-                escolherAtacanteAleatorio(
-                    equipaB
-                );
-
-
-            darPonto(
-                outraEquipa,
-                jogador,"ATAQUE");
+                escolherAtacanteAleatorio(equipaB);
+            darPonto(outraEquipa,jogador,"ATAQUE");
         }
 
 
