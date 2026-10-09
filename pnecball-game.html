@@ -2195,14 +2195,15 @@ function darPonto(
     jogador,
     tipo
 ) {
+    if (tipo != "ASSISTENCIA"){
+        if (equipa === "jogador") {
 
-    if (equipa === "jogador") {
+            jogadorPontos++;
 
-        jogadorPontos++;
+        } else {
 
-    } else {
-
-        adversarioPontos++;
+            adversarioPontos++;
+        }
     }
     console.log("Placar: Jogador " + jogadorPontos + " | " + adversarioPontos + "Adversario");
 
@@ -2398,18 +2399,9 @@ function jogarRally() {
         resultadoServico.tipo === "ACE"
     ) {
 
-        darPonto(
-            equipaQueServe,
-            servidor,
-            "ACE"
-        );
+        darPonto(equipaQueServe,servidor,"ACE");
 
-
-        console.log(
-            servidor.nome +
-            " fez ACE!"
-        );
-
+        console.log(servidor.nome +" fez ACE!");
 
         atualizarPlacar();
 
@@ -2462,9 +2454,7 @@ function jogarRally() {
 
     console.log(
         "1º toque: " +
-        receptor.nome +
-        " fez a receção."
-    );
+        receptor.nome +" fez a receção.");
 
 
     /*
@@ -2535,12 +2525,8 @@ function jogarRally() {
         resultadoAtaque.tipo === "ATAQUE"
     ) {
 
-        darPonto(
-            equipaQueRecebe,
-            atacante,
-            "ATAQUE"
-        );
-
+        darPonto(equipaQueRecebe,atacante,"ATAQUE");
+        darPonto(nomeEquipaAtacante,levantador,"ASSISTENCIA");
 
         console.log(
             atacante.nome +
@@ -2689,25 +2675,36 @@ function continuarRally(
     ATAQUE VENCEDOR
     */
 
-    if (
-        resultadoAtaque.tipo === "ATAQUE"
-    ) {
+    
+        if (resultadoAtaque.tipo === "ATAQUE") {
 
-        darPonto(
-            nomeEquipaDefensora,
-            atacante,
-            "ATAQUE"
-        );
-        darPonto()
+            darPonto(
+                nomeEquipaDefensora,
+                atacante,
+                "ATAQUE"
+            );
 
+            // Registar a assistência do levantador
+            darPonto(
+                nomeEquipaDefensora,
+                levantador,
+                "ASSISTENCIA"
+            );
 
-        console.log(
-            atacante.nome +
-            " marcou no rally!"
-        );
+            console.log(
+                atacante.nome +
+                " marcou no rally!"
+            );
 
-        return;
-    }
+            console.log(
+                "Assistência: " +
+                levantador.nome
+            );
+
+            atualizarPlacar();
+
+            return;
+        }
 
 
     /*
@@ -2882,7 +2879,7 @@ function continuarRallyLongo(
     */
 
     let proximaEquipa =
-        nomeEquipaAtacante === "jogador"
+        nomeEquipaAtacante === "jogador"<
             ? "adversario"
             : "jogador";
 
