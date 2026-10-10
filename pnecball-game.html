@@ -1543,6 +1543,10 @@ let estatisticasJogadores = {};
 let jogadores1set = -1, jogadores2set = -1, jogadores3set = -1, adversario1set = -1, adversario2set = -1, adversario3set = -1;
 
 const PONTOS_PARA_VENCER = 15;
+const ordemServico = ["LW", "CM", "RW"];
+let equipaQueServe = "jogador";
+let indiceServicoJogador = 0;
+let indiceServicoAdversario = 0;
 
 
 /*
@@ -1569,6 +1573,42 @@ pode resultar em:
 function rolagem() {
 
     return Math.floor(Math.random() * 21) - 10;
+}
+
+function escolherServidor(equipa) {
+    const jogadores = equipa === "jogador"
+        ? jogadoresEscolhidos
+        : jogadoresAdversarios;
+
+    const indice = equipa === "jogador"
+        ? indiceServicoJogador
+        : indiceServicoAdversario;
+
+    const posicao = ordemServico[indice];
+
+    return jogadores.find(
+        jogador => jogador.posicaoEscolhida === posicao
+    );
+}
+
+function atualizarServico(equipaVencedora) {
+    // Se a equipa vencedora já estava a servir,
+    // mantém o mesmo jogador.
+    if (equipaVencedora === equipaQueServe) {
+        return;
+    }
+
+    // A equipa que estava a receber recuperou o serviço.
+    equipaQueServe = equipaVencedora;
+
+    // Avança a rotação dessa equipa.
+    if (equipaQueServe === "jogador") {
+        indiceServicoJogador =
+            (indiceServicoJogador + 1) % ordemServico.length;
+    } else {
+        indiceServicoAdversario =
+            (indiceServicoAdversario + 1) % ordemServico.length;
+    }
 }
 
 
@@ -1693,13 +1733,6 @@ async function construirEquipaAdversaria() {
 ESCOLHER SERVIDOR
 =========================================================
 */
-
-function escolherServidor(jogadores) {
-
-    let indice =
-        Math.floor(Math.random() * jogadores.length);
-    return jogadores[indice];
-}
 
 
 /*
