@@ -2361,35 +2361,18 @@ function jogarRally() {
     /*
     Escolher aleatoriamente quem serve
     */
+equipaQueServe = equipaQueServe;
+equipaQueRecebe = equipaQueServe === "jogador"
+    ? "adversario"
+    : "jogador";
 
-    if (Math.random() < 0.5) {
-
-        equipaQueServe =
-            "jogador";
-
-        equipaQueRecebe =
-            "adversario";
-
-
-        servidor = escolherServidor(jogadoresEscolhidos);
-
-
-        receptor = escolherReceptor(jogadoresAdversarios);
-
-    } else {
-
-        equipaQueServe =
-            "adversario";
-
-        equipaQueRecebe =
-            "jogador";
-
-
-        servidor = escolherServidor(jogadoresAdversarios);
-
-
-        receptor = escolherReceptor(jogadoresEscolhidos);
-    }
+if (equipaQueServe === "jogador") {
+    servidor = escolherServidor("jogador");
+    receptor = escolherReceptor(jogadoresAdversarios);
+} else {
+    servidor = escolherServidor("adversario");
+    receptor = escolherReceptor(jogadoresEscolhidos);
+}
 
 
     console.log(
