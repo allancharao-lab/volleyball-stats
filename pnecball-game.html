@@ -1575,6 +1575,7 @@ function rolagem() {
     return Math.floor(Math.random() * 21) - 10;
 }
 
+
 function escolherServidor(equipa) {
     const jogadores = equipa === "jogador"
         ? jogadoresEscolhidos
@@ -1586,10 +1587,26 @@ function escolherServidor(equipa) {
 
     const posicao = ordemServico[indice];
 
-    return jogadores.find(
-        jogador => jogador.posicaoEscolhida === posicao
+    const servidor = jogadores.find(jogador =>
+        jogador.posicaoEscolhida === posicao ||
+        jogador.posicao1?.trim().toUpperCase() === posicao ||
+        jogador.posicao2?.trim().toUpperCase() === posicao
     );
+
+    if (!servidor) {
+        console.error(
+            "Não foi encontrado um servidor para a equipa:",
+            equipa,
+            "Posição procurada:",
+            posicao,
+            "Jogadores disponíveis:",
+            jogadores
+        );
+    }
+
+    return servidor;
 }
+
 
 function atualizarServico(equipaVencedora) {
     // Se a equipa vencedora já estava a servir,
