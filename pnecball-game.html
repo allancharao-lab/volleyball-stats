@@ -1577,6 +1577,7 @@ function rolagem() {
 
 
 function escolherServidor(equipa) {
+
     const jogadores = equipa === "jogador"
         ? jogadoresEscolhidos
         : jogadoresAdversarios;
@@ -1587,20 +1588,16 @@ function escolherServidor(equipa) {
 
     const posicao = ordemServico[indice];
 
-    const servidor = jogadores.find(jogador =>
-        jogador.posicaoEscolhida === posicao ||
-        jogador.posicao1?.trim().toUpperCase() === posicao ||
-        jogador.posicao2?.trim().toUpperCase() === posicao
+    const servidor = jogadores.find(
+        jogador => jogador.posicaoEscolhida === posicao
     );
 
     if (!servidor) {
         console.error(
-            "Não foi encontrado um servidor para a equipa:",
-            equipa,
-            "Posição procurada:",
-            posicao,
-            "Jogadores disponíveis:",
-            jogadores
+            "Não foi encontrado servidor.",
+            "Equipa:", equipa,
+            "Posição:", posicao,
+            "Jogadores:", jogadores
         );
     }
 
@@ -1737,7 +1734,12 @@ async function construirEquipaAdversaria() {
     jogadoresDaEquipa.sort(() => Math.random() - 0.5);
 
     // Escolher 3
-    jogadoresAdversarios = jogadoresDaEquipa.slice(0, 3);
+    jogadoresAdversarios = jogadoresDaEquipa
+    .slice(0, 3)
+    .map((jogador, indice) => ({
+        ...jogador,
+        posicaoEscolhida: ordemServico[indice]
+    }));
 
     console.log("Equipa adversária:", equipaAdversaria);
     console.log("Jogadores adversários:", jogadoresAdversarios);
