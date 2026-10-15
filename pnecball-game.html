@@ -3144,31 +3144,19 @@ Primeiro a 3 sets ganha.
 
 function verificarFimDeJogo() {
 
-    if (
-        jogadorSets >= 3
-    ) {
-
+    if (jogadorSets = 3) {
         console.log(
             "BARREIRO GANHOU O JOGO!"
         );
-
         return true;
     }
-
-
-    if (
-        adversarioSets >= 3
-    ) {
-
+    if (adversarioSets = 3) {
         console.log(
             equipaAdversaria +
             " GANHOU O JOGO!"
         );
-
         return true;
     }
-
-
     return false;
 }
 
@@ -3295,7 +3283,7 @@ function mostrarEstatisticas() {
     }
 
     if(jogadores5set > -1 || adversario5set > -1){
-        console.log("Quarto SET");
+        console.log("Quinto SET");
         if(jogadores5set>adversario5set){
             console.log("Venceu");
         }
