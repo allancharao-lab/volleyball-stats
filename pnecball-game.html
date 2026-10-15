@@ -1540,7 +1540,7 @@ let equipaAdversaria = null;
 
 let estatisticasJogadores = {};
 
-let jogadores1set = -1, jogadores2set = -1, jogadores3set = -1, adversario1set = -1, adversario2set = -1, adversario3set = -1;
+let jogadores1set = -1, jogadores2set = -1, jogadores3set = -1, adversario1set = -1, adversario2set = -1, adversario3set = -1, jogador4set = -1, adversario4set = -1, jogador5set = -1, adversario5set = -1;
 
 const PONTOS_PARA_VENCER = 15;
 const ordemServico = ["LW", "CM", "RW"];
@@ -3057,9 +3057,17 @@ function verificarFimDeSet() {
             jogadores2set = jogadorPontos;
 
         }
-        else{
+        else if (jogadores3set < 0){
             jogadores3set = jogadorPontos;
         }
+        else if (jogadores4set < 0){
+            jogadores4set = jogadorPontos;
+        }
+        
+        else{
+            jogadores5set = jogadorPontos;
+        }
+
         
         if (adversario1set < 0){
             adversario1set = adversarioPontos;
@@ -3068,8 +3076,14 @@ function verificarFimDeSet() {
             adversario2set = adversarioPontos;
 
         }
-        else{
+        else if (adversario3set < 0){
             adversario3set = adversarioPontos;
+        }
+        else if (adversario4set < 0){
+            adversario4set = adversarioPontos;
+        }
+        else{
+            adversario5set = adversarioPontos;
         }
 
         
@@ -3268,6 +3282,28 @@ function mostrarEstatisticas() {
         console.log("Perdeu");
     }
     console.log("Jogador " + jogadores3set + "|" + adversario3set + " " + equipaAdversaria);
+
+    if(jogadores4set > -1 || adversario4set > -1){
+        console.log("Quarto SET");
+        if(jogadores4set>adversario4set){
+            console.log("Venceu");
+        }
+        else{
+            console.log("Perdeu");
+        }
+        console.log("Jogador " + jogadores4set + "|" + adversario4set + " " + equipaAdversaria);
+    }
+
+    if(jogadores5set > -1 || adversario5set > -1){
+        console.log("Quarto SET");
+        if(jogadores5set>adversario5set){
+            console.log("Venceu");
+        }
+        else{
+            console.log("Perdeu");
+        }
+        console.log("Jogador " + jogadores5set + "|" + adversario5set + " " + equipaAdversaria);
+    }
 }
 
     async function iniciarJogo() {
