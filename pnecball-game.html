@@ -2242,11 +2242,7 @@ DAR PONTO
 Também regista as estatísticas individuais.
 */
 
-function darPonto(
-    equipa,
-    jogador,
-    tipo
-) {
+function darPonto(equipa,jogador,tipo) {
     if (tipo != "ASSISTENCIA"){
         if (equipa === "jogador") {
 
@@ -2256,6 +2252,7 @@ function darPonto(
 
             adversarioPontos++;
         }
+        atualizarServico(equipa);
     }
     console.log("Placar: Jogador " + jogadorPontos + " | " + adversarioPontos + " Adversario");
 
