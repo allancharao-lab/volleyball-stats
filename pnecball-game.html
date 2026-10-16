@@ -3327,9 +3327,9 @@ function mostrarEstatisticas() {
 
         console.log("Equipa adversária:");
         console.log(jogadoresAdversarios);
-        do{
+        while(verificarFimDeJogo() != true){
             jogarRally();
-        }while(verificarFimDeJogo() != true);
+        }
 
         mostrarEstatisticas();
     }
