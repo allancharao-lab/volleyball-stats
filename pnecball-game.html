@@ -1546,7 +1546,7 @@ const PONTOS_PARA_VENCER = 15;
 const ordemServico = ["LW", "CM", "RW"];
 let equipaQueServe = "jogador";
 let indiceServicoJogador = 0;
-let indiceServicoAdversario = 0;
+let indiceServicoAdversario = -1;
 
 
 /*
@@ -3141,13 +3141,13 @@ Primeiro a 3 sets ganha.
 
 function verificarFimDeJogo() {
 
-    if (jogadorSets = 3) {
+    if (jogadorSets == 3) {
         console.log(
             "BARREIRO GANHOU O JOGO!"
         );
         return true;
     }
-    if (adversarioSets = 3) {
+    if (adversarioSets == 3) {
         console.log(
             equipaAdversaria +
             " GANHOU O JOGO!"
@@ -3328,10 +3328,6 @@ function mostrarEstatisticas() {
         console.log("Equipa adversária:");
         console.log(jogadoresAdversarios);
         do{
-            if (verificarFimDeSet == true){
-                jogadorPontos == 0;
-                adversarioPontos == 0;
-            }
             jogarRally();
         }while(verificarFimDeJogo() != true);
 
