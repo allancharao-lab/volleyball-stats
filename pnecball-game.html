@@ -588,6 +588,272 @@ body {
                 z-index: 2;
             }
 
+                    
+        /* =========================
+        POPUP DO JOGO
+        ========================= */
+
+        .match-overlay[hidden],
+        .match-statistics[hidden],
+        .match-finish[hidden] {
+            display: none !important;
+        }
+
+        .match-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+            overflow-y: auto;
+
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(8px);
+        }
+
+        .match-popup {
+            width: min(620px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+
+            padding: 28px;
+            border: 2px solid #f5c542;
+            border-radius: 18px;
+
+            color: white;
+            background: linear-gradient(145deg, #252525, #111);
+
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+
+            animation: popupEntrada 0.35s ease-out;
+        }
+
+        @keyframes popupEntrada {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .match-tag {
+            color: #f5c542;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .close-match {
+            border: none;
+            background: transparent;
+            color: #aaa;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .match-popup h2 {
+            margin-bottom: 22px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .match-scoreboard {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+
+            padding: 22px 12px;
+            border: 1px solid #444;
+            border-radius: 12px;
+            background: #191919;
+        }
+
+        .match-team {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .match-team span {
+            color: #ddd;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .match-team strong {
+            color: #f5c542;
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .score-separator {
+            color: #777;
+            font-size: 28px;
+        }
+
+        .sets-counter {
+            margin: 15px 0 24px;
+            text-align: center;
+            color: #bbb;
+        }
+
+        .sets-counter strong {
+            color: white;
+        }
+
+        .match-section h3,
+        .match-statistics h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        #match-sets-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .match-placeholder {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .set-result {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #292929;
+            border-left: 4px solid #666;
+
+            animation: popupEntrada 0.35s ease-out;
+        }
+
+        .set-result.set-won {
+            border-left-color: #55c987;
+        }
+
+        .set-result.set-lost {
+            border-left-color: #e56b6b;
+        }
+
+        .set-result strong {
+            color: #f5c542;
+            white-space: nowrap;
+        }
+
+        .set-result small {
+            color: #bbb;
+        }
+
+        .match-status {
+            margin-top: 22px;
+            padding: 13px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            color: #f5c542;
+            background: rgba(245, 197, 66, 0.08);
+        }
+
+        .match-statistics {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: minmax(90px, 1fr) repeat(4, auto);
+            gap: 12px;
+            align-items: center;
+
+            padding: 11px 8px;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .stat-row span:first-child {
+            font-weight: bold;
+        }
+
+        .stat-row span:not(:first-child) {
+            color: #ddd;
+            text-align: center;
+        }
+
+        .stat-head {
+            color: #f5c542;
+            font-weight: bold;
+        }
+
+        .match-finish {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+
+            border: none;
+            border-radius: 8px;
+            background: #f5c542;
+            color: #111;
+
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .match-finish:hover {
+            background: #ffd966;
+        }
+
+        @media (max-width: 500px) {
+            .match-popup {
+                padding: 18px;
+            }
+
+            .match-scoreboard {
+                gap: 10px;
+            }
+
+            .match-team strong {
+                font-size: 38px;
+            }
+
+            .match-team span {
+                font-size: 12px;
+            }
+
+            .stat-row {
+                grid-template-columns: minmax(70px, 1fr) repeat(4, auto);
+                gap: 6px;
+                font-size: 10px;
+            }
+        }
+
+
     </style>
 
 </head>
@@ -617,27 +883,74 @@ body {
         <div class="attack-line-left"></div>
         <div class="attack-line-right"></div>
         <div class="players">
-
             <div class="Player pos-1" data-number="1" id="player-1">
                 LW
             </div>
-
-
             <div class="Player pos-2" data-number="2" id="player-2">
                 CM
             </div>
-
-
             <div class="Player pos-3" data-number="3" id="player-3">
                 RW
             </div>
+        </div>
+    </div>
+<!-- POPUP DO JOGO -->
+<div id="match-overlay" class="match-overlay" hidden>
+    <div class="match-popup">
 
-
+        <div class="match-header">
+            <span class="match-tag">3x3 VOLLEYBALL</span>
+            <button id="close-match" class="close-match"
+                    type="button" aria-label="Fechar">×</button>
         </div>
 
+        <h2 id="match-title">Jogo em andamento</h2>
+
+        <div class="match-scoreboard">
+            <div class="match-team">
+                <span id="match-home-name">Barreiro</span>
+                <strong id="match-home-score">0</strong>
+            </div>
+
+            <span class="score-separator">:</span>
+
+            <div class="match-team">
+                <span id="match-away-name">Adversário</span>
+                <strong id="match-away-score">0</strong>
+            </div>
+        </div>
+
+        <div class="sets-counter">
+            Sets ganhos:
+            <strong id="match-home-sets">0</strong>
+            -
+            <strong id="match-away-sets">0</strong>
+        </div>
+
+        <div class="match-section">
+            <h3>Resultado dos sets</h3>
+            <div id="match-sets-list">
+                <p class="match-placeholder">À espera do primeiro set...</p>
+            </div>
+        </div>
+
+        <div id="match-status" class="match-status">
+            A preparar o jogo...
+        </div>
+
+        <div id="match-statistics" class="match-statistics" hidden>
+            <h3>Estatísticas dos jogadores</h3>
+            <div id="statistics-list"></div>
+        </div>
+
+        <button id="match-finish" class="match-finish"
+                type="button" hidden>
+            Fechar resultados
+        </button>
+
     </div>
-
-
+</div>
+    
     <script>
 
     // ======================================================
@@ -1528,6 +1841,7 @@ function colocarJogadorNoCampo(
 VARIÁVEIS DO JOGO
 =========================================================
 */
+let historicoSets = [];
 
 let jogadorPontos = 0;
 let adversarioPontos = 0;
@@ -3083,13 +3397,17 @@ function verificarFimDeSet() {
             adversario5set = adversarioPontos;
         }
 
-        
+        historicoSets.push({
+            numero: historicoSets.length + 1,
+            jogador: jogadorPontos,
+            adversario: adversarioPontos,
+            vencedor: jogadorPontos > adversarioPontos
+            ? "jogador"
+            : "adversario"
+        });
         
         jogadorPontos = 0;
-
         adversarioPontos = 0;
-
-
         atualizarPlacarSemVerificarSet();
     }
 
@@ -3291,48 +3609,228 @@ function mostrarEstatisticas() {
     }
 }
 
+
+function esperar(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function abrirPopupJogo() {
+    document.getElementById("match-overlay").hidden = false;
+
+    document.getElementById("match-title").textContent =
+        "Jogo em andamento";
+
+    document.getElementById("match-home-name").textContent =
+        "Barreiro";
+
+    document.getElementById("match-away-name").textContent =
+        equipaAdversaria;
+
+    document.getElementById("match-home-score").textContent = "0";
+    document.getElementById("match-away-score").textContent = "0";
+    document.getElementById("match-home-sets").textContent = "0";
+    document.getElementById("match-away-sets").textContent = "0";
+
+    document.getElementById("match-sets-list").innerHTML = "";
+    document.getElementById("match-status").textContent =
+        "O jogo vai começar...";
+
+    document.getElementById("match-statistics").hidden = true;
+    document.getElementById("match-finish").hidden = true;
+}
+
+function atualizarPopupPlacar() {
+    document.getElementById("match-home-score").textContent =
+        jogadorPontos;
+
+    document.getElementById("match-away-score").textContent =
+        adversarioPontos;
+
+    document.getElementById("match-home-sets").textContent =
+        jogadorSets;
+
+    document.getElementById("match-away-sets").textContent =
+        adversarioSets;
+}
+
+function mostrarResultadoSet(set) {
+    const lista = document.getElementById("match-sets-list");
+
+    // Retira a mensagem inicial, se existir.
+    if (historicoSets.length === 1) {
+        lista.innerHTML = "";
+    }
+
+    const linha = document.createElement("div");
+    linha.className = "set-result " +
+        (set.vencedor === "jogador" ? "set-won" : "set-lost");
+
+    const nome = document.createElement("span");
+    nome.textContent = "Set " + set.numero;
+
+    const resultado = document.createElement("strong");
+    resultado.textContent = set.jogador + " : " + set.adversario;
+
+    const vencedor = document.createElement("small");
+    vencedor.textContent = set.vencedor === "jogador"
+        ? "Vitória"
+        : "Derrota";
+
+    linha.append(nome, resultado, vencedor);
+    lista.appendChild(linha);
+}
+
+function mostrarEstatisticasNoPopup() {
+    const lista = document.getElementById("statistics-list");
+    lista.innerHTML = "";
+
+    const cabecalho = document.createElement("div");
+    cabecalho.className = "stat-row stat-head";
+
+    ["Jogador", "Pontos", "Ataques", "Aces", "Assist."].forEach(texto => {
+        const celula = document.createElement("span");
+        celula.textContent = texto;
+        cabecalho.appendChild(celula);
+    });
+
+    lista.appendChild(cabecalho);
+
+    jogadoresEscolhidos.forEach(jogador => {
+        const stats = estatisticasJogadores[jogador.id];
+        if (!stats) return;
+
+        const linha = document.createElement("div");
+        linha.className = "stat-row";
+
+        [
+            stats.nome,
+            stats.pontos,
+            stats.ataques,
+            stats.aces,
+            stats.assistencias
+        ].forEach(valor => {
+            const celula = document.createElement("span");
+            celula.textContent = valor;
+            linha.appendChild(celula);
+        });
+
+        lista.appendChild(linha);
+    });
+
+    document.getElementById("match-statistics").hidden = false;
+}
+    
     async function iniciarJogo() {
+        const botao = document.getElementById("start-game");
 
-        jogadorPontos = 0;
-        adversarioPontos = 0;
-
-        jogadorSets = 0;
-        adversarioSets = 0;
-
-        estatisticasJogadores = {};
-
-        sortearEquipeAdversaria();
-
-        const sucesso = await construirEquipaAdversaria();
-
-        if (!sucesso) {
-            console.error("Não foi possível iniciar o jogo.");
+        if (jogadoresEscolhidos.length !== 3) {
+            alert("Tens de escolher os 3 jogadores antes de começar.");
             return;
         }
 
-        // Estatísticas da equipa do jogador
-        inicializarEstatisticas(jogadoresEscolhidos);
+        botao.disabled = true;
 
-        // Estatísticas da equipa adversária
-        inicializarEstatisticas(jogadoresAdversarios);
+        try {
+            // Reiniciar o estado do jogo.
+            jogadorPontos = 0;
+            adversarioPontos = 0;
+            jogadorSets = 0;
+            adversarioSets = 0;
+            estatisticasJogadores = {};
+            historicoSets = [];
 
-        atualizarPlacarSemVerificarSet();
+            jogadores1set = -1;
+            jogadores2set = -1;
+            jogadores3set = -1;
+            jogadores4set = -1;
+            jogadores5set = -1;
 
-        console.log("==============================");
-        console.log("JOGO INICIADO");
-        console.log("==============================");
+            adversario1set = -1;
+            adversario2set = -1;
+            adversario3set = -1;
+            adversario4set = -1;
+            adversario5set = -1;
 
-        console.log("Equipa do jogador:");
-        console.log(jogadoresEscolhidos);
+            sortearEquipeAdversaria();
 
-        console.log("Equipa adversária:");
-        console.log(jogadoresAdversarios);
-        while(verificarFimDeJogo() != true){
-            jogarRally();
+            const sucesso = await construirEquipaAdversaria();
+
+            if (!sucesso) {
+                alert("Não foi possível construir a equipa adversária.");
+                return;
+            }
+
+            inicializarEstatisticas(jogadoresEscolhidos);
+            inicializarEstatisticas(jogadoresAdversarios);
+
+            abrirPopupJogo();
+
+            // Permite ao navegador desenhar o popup antes de começar.
+            await esperar(100);
+
+            let setsApresentados = 0;
+
+            while (!verificarFimDeJogo()) {
+                const setsAntes = jogadorSets + adversarioSets;
+
+                jogarRally();
+
+                atualizarPopupPlacar();
+
+                // Pequena pausa entre rallies para o marcador ser visível.
+                await esperar(350);
+
+                const setsDepois = jogadorSets + adversarioSets;
+
+                if (setsDepois > setsAntes) {
+                    const ultimoSet = historicoSets[historicoSets.length - 1];
+
+                    if (ultimoSet && setsApresentados < historicoSets.length) {
+                        mostrarResultadoSet(ultimoSet);
+                        setsApresentados++;
+
+                        document.getElementById("match-status").textContent =
+                            ultimoSet.vencedor === "jogador"
+                                ? "O Barreiro venceu o set!"
+                                : equipaAdversaria + " venceu o set!";
+
+                        atualizarPopupPlacar();
+
+                        // Tempo para o utilizador ler o resultado do set.
+                        await esperar(1800);
+                    }
+                }
+            }
+
+            atualizarPopupPlacar();
+
+            document.getElementById("match-title").textContent =
+                jogadorSets === 3
+                    ? "VITÓRIA DO BARREIRO!"
+                    : "DERROTA DO BARREIRO";
+
+            document.getElementById("match-status").textContent =
+                "Resultado final: " + jogadorSets + " - " + adversarioSets;
+
+            mostrarEstatisticasNoPopup();
+
+            document.getElementById("match-finish").hidden = false;
+
+        } catch (erro) {
+            console.error("Erro ao iniciar o jogo:", erro);
+            alert("Ocorreu um erro ao iniciar o jogo. Consulta a consola para ver o erro.");
+        } finally {
+            botao.disabled = false;
         }
-
-        mostrarEstatisticas();
     }
+
+    document.getElementById("close-match").addEventListener("click", () => {
+    document.getElementById("match-overlay").hidden = true;
+});
+
+document.getElementById("match-finish").addEventListener("click", () => {
+    document.getElementById("match-overlay").hidden = true;
+});
 </script>
 
 
