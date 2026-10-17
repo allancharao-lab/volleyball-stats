@@ -542,6 +542,270 @@ body {
             font-size: 18px;
             margin-bottom: 15px;
         }
+
+                /* =========================
+        POPUP DO JOGO
+        ========================= */
+
+        .match-overlay[hidden],
+        .match-statistics[hidden],
+        .match-finish[hidden] {
+            display: none !important;
+        }
+
+        .match-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+            overflow-y: auto;
+
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(8px);
+        }
+
+        .match-popup {
+            width: min(620px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+
+            padding: 28px;
+            border: 2px solid #f5c542;
+            border-radius: 18px;
+
+            color: white;
+            background: linear-gradient(145deg, #252525, #111);
+
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+
+            animation: popupEntrada 0.35s ease-out;
+        }
+
+        @keyframes popupEntrada {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .match-tag {
+            color: #f5c542;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .close-match {
+            border: none;
+            background: transparent;
+            color: #aaa;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .match-popup h2 {
+            margin-bottom: 22px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .match-scoreboard {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+
+            padding: 22px 12px;
+            border: 1px solid #444;
+            border-radius: 12px;
+            background: #191919;
+        }
+
+        .match-team {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .match-team span {
+            color: #ddd;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .match-team strong {
+            color: #f5c542;
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        .score-separator {
+            color: #777;
+            font-size: 28px;
+        }
+
+        .sets-counter {
+            margin: 15px 0 24px;
+            text-align: center;
+            color: #bbb;
+        }
+
+        .sets-counter strong {
+            color: white;
+        }
+
+        .match-section h3,
+        .match-statistics h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        #match-sets-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .match-placeholder {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .set-result {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #292929;
+            border-left: 4px solid #666;
+
+            animation: popupEntrada 0.35s ease-out;
+        }
+
+        .set-result.set-won {
+            border-left-color: #55c987;
+        }
+
+        .set-result.set-lost {
+            border-left-color: #e56b6b;
+        }
+
+        .set-result strong {
+            color: #f5c542;
+            white-space: nowrap;
+        }
+
+        .set-result small {
+            color: #bbb;
+        }
+
+        .match-status {
+            margin-top: 22px;
+            padding: 13px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            color: #f5c542;
+            background: rgba(245, 197, 66, 0.08);
+        }
+
+        .match-statistics {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: minmax(90px, 1fr) repeat(4, auto);
+            gap: 12px;
+            align-items: center;
+
+            padding: 11px 8px;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .stat-row span:first-child {
+            font-weight: bold;
+        }
+
+        .stat-row span:not(:first-child) {
+            color: #ddd;
+            text-align: center;
+        }
+
+        .stat-head {
+            color: #f5c542;
+            font-weight: bold;
+        }
+
+        .match-finish {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+
+            border: none;
+            border-radius: 8px;
+            background: #f5c542;
+            color: #111;
+
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .match-finish:hover {
+            background: #ffd966;
+        }
+
+        @media (max-width: 500px) {
+            .match-popup {
+                padding: 18px;
+            }
+
+            .match-scoreboard {
+                gap: 10px;
+            }
+
+            .match-team strong {
+                font-size: 38px;
+            }
+
+            .match-team span {
+                font-size: 12px;
+            }
+
+            .stat-row {
+                grid-template-columns: minmax(70px, 1fr) repeat(4, auto);
+                gap: 6px;
+                font-size: 10px;
+            }
+        }
     </style>
 
 </head>
@@ -557,7 +821,7 @@ body {
             ?
         </div>
 
-        <button id="start-game" class="comecarJogo">
+        <button onclick="iniciarJogo()" id="start-game" class="comecarJogo">
             Começar jogo
         </button>
 
@@ -1319,6 +1583,2003 @@ body {
             this.style.display = "none";
 
         });
+
+        
+/*
+=========================================================
+VARIÁVEIS DO JOGO
+=========================================================
+*/
+let historicoSets = [];
+
+let jogadorPontos = 0;
+let adversarioPontos = 0;
+
+let jogadorSets = 0;
+let adversarioSets = 0;
+
+let jogadoresAdversarios = [];
+let equipaAdversaria = null;
+
+let estatisticasJogadores = {};
+
+let jogadores1set = -1, jogadores2set = -1, jogadores3set = -1, adversario1set = -1, adversario2set = -1, adversario3set = -1, jogadores4set = -1, adversario4set = -1, jogadores5set = -1, adversario5set = -1;
+
+const PONTOS_PARA_VENCER = 15;
+const ordemServico = ["LW", "CM", "RW"];
+let equipaQueServe = "jogador";
+let indiceServicoJogador = 0;
+let indiceServicoAdversario = -1;
+
+
+/*
+=========================================================
+ROLAGEM DE SORTE
+=========================================================
+
+Retorna um valor entre -10 e +10.
+
+Exemplo:
+
+90 + rolagem()
+
+pode resultar em:
+
+80
+81
+...
+90
+...
+100
+*/
+
+function rolagem() {
+
+    return Math.floor(Math.random() * 21) - 10;
+}
+
+
+function escolherServidor(equipa) {
+
+    const jogadores = equipa === "jogador"
+        ? jogadoresEscolhidos
+        : jogadoresAdversarios;
+
+    const indice = equipa === "jogador"
+        ? indiceServicoJogador
+        : indiceServicoAdversario;
+
+    const posicao = ordemServico[indice];
+
+    const servidor = jogadores.find(
+        jogador => jogador.posicaoEscolhida === posicao
+    );
+
+    if (!servidor) {
+        console.error(
+            "Não foi encontrado servidor.",
+            "Equipa:", equipa,
+            "Posição:", posicao,
+            "Jogadores:", jogadores
+        );
+    }
+
+    return servidor;
+}
+
+
+function atualizarServico(equipaVencedora) {
+    // Se a equipa vencedora já estava a servir,
+    // mantém o mesmo jogador.
+    if (equipaVencedora === equipaQueServe) {
+        return;
+    }
+
+    // A equipa que estava a receber recuperou o serviço.
+    equipaQueServe = equipaVencedora;
+
+    // Avança a rotação dessa equipa.
+    if (equipaQueServe === "jogador") {
+        indiceServicoJogador =
+            (indiceServicoJogador + 1) % ordemServico.length;
+    } else {
+        indiceServicoAdversario =
+            (indiceServicoAdversario + 1) % ordemServico.length;
+    }
+}
+
+
+/*
+=========================================================
+SORTEAR EQUIPA ADVERSÁRIA
+=========================================================
+*/
+
+function sortearEquipeAdversaria() {
+
+    let novaEquipe;
+
+    do {
+
+        novaEquipe = sortearEquipe();
+
+    } while (novaEquipe === equipaTeste);
+
+    equipaAdversaria = novaEquipe;
+
+    console.log(
+        "Equipa adversária: " +
+        equipaAdversaria
+    );
+
+    return equipaAdversaria;
+}
+
+
+/*
+=========================================================
+SORTEAR UMA EQUIPA
+=========================================================
+*/
+
+function sortearEquipe() {
+
+    const indice =
+        Math.floor(
+            Math.random() * equipes.length
+        );
+
+    return equipes[indice];
+}
+
+
+/*
+=========================================================
+CONSTRUIR EQUIPA ADVERSÁRIA
+=========================================================
+
+Escolhe 3 jogadores aleatoriamente da equipa
+sorteada.
+*/
+
+async function construirEquipaAdversaria() {
+
+    const resposta = await fetch("players.txt");
+
+    const texto = await resposta.text();
+
+    const linhas = texto.trim().split("\n");
+
+    const jogadores = [];
+
+    for (let i = 0; i < linhas.length; i++) {
+
+        const dados = linhas[i].trim().split(";");
+
+        if (dados.length < 12) {
+            continue;
+        }
+
+        jogadores.push({
+            id: dados[0],
+            nome: dados[1],
+            ataque: Number(dados[2]),
+            servico: Number(dados[3]),
+            passe: Number(dados[4]),
+            iq: Number(dados[5]),
+            defesa: Number(dados[6]),
+            fisico: Number(dados[7]),
+            overall: Number(dados[8]),
+            posicao1: dados[9],
+            posicao2: dados[10],
+            time: dados[11]
+        });
+    }
+
+    // Jogadores pertencentes à equipa adversária
+    const jogadoresDaEquipa = jogadores.filter(
+        jogador => jogador.time === equipaAdversaria
+    );
+
+    if (jogadoresDaEquipa.length < 3) {
+
+        console.error(
+            "A equipa " + equipaAdversaria +
+            " não tem jogadores suficientes."
+        );
+
+        jogadoresAdversarios = [];
+
+        return false;
+    }
+
+    // Baralhar jogadores
+    jogadoresDaEquipa.sort(() => Math.random() - 0.5);
+
+    // Escolher 3
+    jogadoresAdversarios = jogadoresDaEquipa
+    .slice(0, 3)
+    .map((jogador, indice) => ({
+        ...jogador,
+        posicaoEscolhida: ordemServico[indice]
+    }));
+
+    console.log("Equipa adversária:", equipaAdversaria);
+    console.log("Jogadores adversários:", jogadoresAdversarios);
+
+    return true;
+}
+
+/*
+=========================================================
+ESCOLHER SERVIDOR
+=========================================================
+*/
+
+
+/*
+=========================================================
+ESCOLHER RECEPTOR
+=========================================================
+
+Neste momento escolhemos aleatoriamente um dos
+3 jogadores.
+
+Mais tarde podemos fazer com que jogadores com
+melhor defesa tenham maior probabilidade de receber.
+*/
+
+function escolherReceptor(jogadores) {
+
+    let indice =
+        Math.floor(
+            Math.random() * jogadores.length
+        );
+
+    return jogadores[indice];
+}
+
+
+/*
+=========================================================
+RESOLVER SERVIÇO
+=========================================================
+
+SERVIÇO vs DEFESA
+
+Diferença >= 15
+→ ACE
+
+Diferença >= 5
+→ receção difícil
+
+Diferença >= -4
+→ receção normal
+
+Diferença < -4
+→ receção fácil
+*/
+
+function resolverServico(servidor, receptor) {
+
+    let valorServico =
+        servidor.servico + rolagem();
+
+    let valorDefesa =
+        receptor.defesa + rolagem();
+
+    let diferenca =
+        valorServico - valorDefesa;
+
+    console.log(
+        servidor.nome +
+        " Serviço: " +
+        valorServico
+    );
+
+    console.log(
+        receptor.nome +
+        " Defesa: " +
+        valorDefesa
+    );
+
+
+    /*
+    ACE
+    */
+
+    if (diferenca >= 15) {
+
+        return {
+
+            tipo: "ACE",
+
+            servidor: servidor,
+
+            receptor: receptor,
+
+            valorServico: valorServico,
+
+            valorDefesa: valorDefesa,
+
+            dificuldade: 0
+        };
+    }
+
+
+    /*
+    RECEÇÃO DIFÍCIL
+    */
+
+    if (diferenca >= 5) {
+
+        return {
+
+            tipo: "RECEPCAO_DIFICIL",
+
+            servidor: servidor,
+
+            receptor: receptor,
+
+            valorServico: valorServico,
+
+            valorDefesa: valorDefesa,
+
+            dificuldade: diferenca
+        };
+    }
+
+
+    /*
+    RECEÇÃO NORMAL
+    */
+
+    if (diferenca >= -4) {
+
+        return {
+
+            tipo: "RECEPCAO_NORMAL",
+
+            servidor: servidor,
+
+            receptor: receptor,
+
+            valorServico: valorServico,
+
+            valorDefesa: valorDefesa,
+
+            dificuldade: 0
+        };
+    }
+
+
+    /*
+    RECEÇÃO FÁCIL
+    */
+
+    return {
+
+        tipo: "RECEPCAO_FACIL",
+
+        servidor: servidor,
+
+        receptor: receptor,
+
+        valorServico: valorServico,
+
+        valorDefesa: valorDefesa,
+
+        dificuldade: 0
+    };
+}
+
+
+/*
+=========================================================
+ESCOLHER LEVANTADOR
+=========================================================
+
+O receptor é excluído.
+
+Dos dois jogadores restantes, escolhemos aquele
+com melhor combinação:
+
+60% passe
+40% IQ
+*/
+
+function escolherLevantador(jogadores, receptor) {
+
+    // Retira o jogador que fez o primeiro toque
+    let candidatos = jogadores.filter(
+        jogador => jogador.id !== receptor.id
+    );
+
+    // Se não houver jogadores disponíveis
+    if (candidatos.length === 0) {
+        return null;
+    }
+
+    // Escolhe aleatoriamente um dos dois jogadores
+    let indice = Math.floor(Math.random() * candidatos.length);
+
+    return candidatos[indice];
+}
+
+
+/*
+=========================================================
+CALCULAR BÓNUS DO LEVANTAMENTO
+=========================================================
+
+90+ → +10
+80-89 → +7
+70-79 → +5
+60-69 → +2
+45-59 → 0
+<45 → -5
+*/
+
+function calcularBonusLevantamento(
+    valorLevantamento
+) {
+
+    if (valorLevantamento >= 90) {
+
+        return 10;
+    }
+
+    if (valorLevantamento >= 80) {
+
+        return 7;
+    }
+
+    if (valorLevantamento >= 70) {
+
+        return 5;
+    }
+
+    if (valorLevantamento >= 60) {
+
+        return 2;
+    }
+
+    if (valorLevantamento >= 45) {
+
+        return 0;
+    }
+
+    return -5;
+}
+
+
+/*
+=========================================================
+RESOLVER LEVANTAMENTO
+=========================================================
+
+O levantamento utiliza:
+
+60% PASSE
+40% IQ
++ sorte
+- dificuldade da receção
+
+Depois transforma o resultado num bónus
+para o atacante.
+*/
+
+function resolverLevantamento(
+    levantador,
+    resultadoRececao
+) {
+
+    let valorPasse =
+        levantador.passe * 0.6;
+
+    let valorIQ =
+        levantador.iq * 0.4;
+
+    let sorte =
+        rolagem();
+
+    let dificuldade =
+        resultadoRececao.dificuldade || 0;
+
+
+    let valorLevantamento =
+        valorPasse +
+        valorIQ +
+        sorte -
+        dificuldade;
+
+
+    /*
+    Limitar entre 0 e 100
+    */
+
+    valorLevantamento =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                valorLevantamento
+            )
+        );
+
+
+    let bonusAtaque =
+        calcularBonusLevantamento(
+            valorLevantamento
+        );
+
+
+    console.log(
+        levantador.nome +
+        " fez o levantamento: " +
+        valorLevantamento
+    );
+
+    console.log(
+        "Bónus de ataque: +" +
+        bonusAtaque
+    );
+
+
+    return {
+
+        levantador: levantador,
+
+        valor: valorLevantamento,
+
+        bonusAtaque: bonusAtaque
+    };
+}
+
+
+/*
+=========================================================
+ESCOLHER ATACANTE
+=========================================================
+
+O atacante tem de ser:
+
+- diferente do receptor
+- diferente do levantador
+
+Num 3x3 sobra exatamente um jogador.
+*/
+
+function escolherAtacante(
+    jogadores,
+    receptor,
+    levantador
+) {
+
+    let candidatos =
+        jogadores.filter(
+            jogador =>
+                jogador.id !== receptor.id &&
+                jogador.id !== levantador.id
+        );
+
+
+    if (candidatos.length === 0) {
+
+        return null;
+    }
+
+
+    /*
+    Normalmente haverá apenas um jogador.
+    */
+
+    if (candidatos.length === 1) {
+
+        return candidatos[0];
+    }
+
+
+    /*
+    Segurança caso no futuro o número
+    de jogadores seja diferente.
+    */
+
+    candidatos.sort(
+        (a, b) =>
+            b.ataque - a.ataque
+    );
+
+
+    return candidatos[0];
+}
+
+
+/*
+=========================================================
+RESOLVER ATAQUE
+=========================================================
+
+Ataque recebe:
+
+ataque do jogador
++
+bónus do levantamento
++
+sorte
+
+Depois enfrenta a defesa do adversário.
+*/
+
+function resolverAtaque(
+    atacante,
+    defensores,
+    bonusAtaque
+) {
+
+    let valorAtaque =
+        atacante.ataque +
+        bonusAtaque +
+        rolagem();
+
+
+    let defensor =
+        escolherReceptor(
+            defensores
+        );
+
+
+    let valorDefesa =
+        defensor.defesa +
+        rolagem();
+
+
+    let diferenca =
+        valorAtaque -
+        valorDefesa;
+
+
+    console.log(
+        atacante.nome +
+        " Ataque: " +
+        valorAtaque
+    );
+
+    console.log(
+        defensor.nome +
+        " Defesa: " +
+        valorDefesa
+    );
+
+    console.log(
+        "Diferença: " +
+        diferenca
+    );
+
+
+    /*
+    ATAQUE VENCEDOR
+    */
+
+    if (diferenca >= 10) {
+
+        return {
+
+            tipo: "ATAQUE",
+
+            vencedor: atacante,
+
+            defensor: defensor,
+
+            valorAtaque: valorAtaque,
+
+            valorDefesa: valorDefesa
+        };
+    }
+
+
+    /*
+    A BOLA CONTINUA EM JOGO
+    */
+
+    return {
+
+        tipo: "RALLY",
+
+        atacante: atacante,
+
+        defensor: defensor,
+
+        valorAtaque: valorAtaque,
+
+        valorDefesa: valorDefesa
+    };
+}
+
+
+/*
+=========================================================
+DAR PONTO
+=========================================================
+
+Também regista as estatísticas individuais.
+*/
+
+function darPonto(equipa,jogador,tipo) {
+    if (tipo != "ASSISTENCIA"){
+        if (equipa === "jogador") {
+
+            jogadorPontos++;
+
+        } else {
+
+            adversarioPontos++;
+        }
+        atualizarServico(equipa);
+    }
+    console.log("Placar: Jogador " + jogadorPontos + " | " + adversarioPontos + " Adversario");
+
+
+    /*
+    Estatística individual
+    */
+
+    if (jogador) {
+
+        let estatisticas =
+            estatisticasJogadores[jogador.id];
+
+
+        /*
+        Caso as estatísticas ainda não
+        tenham sido criadas.
+        */
+
+        if (!estatisticas) {
+
+            estatisticasJogadores[jogador.id] = {
+
+                nome: jogador.nome,
+
+                pontos: 0,
+
+                ataques: 0,
+
+                aces: 0,
+
+                assistencias: 0,
+
+                errosAtaque: 0,
+
+                errosServico: 0,
+
+                defesas: 0
+            };
+
+            estatisticas =
+                estatisticasJogadores[jogador.id];
+        }
+
+
+        if (tipo === "ACE") {
+            estatisticas.pontos++;
+            estatisticas.aces++;
+        }
+
+
+        if (tipo === "ATAQUE") {
+            estatisticas.pontos++;
+            estatisticas.ataques++;
+        }
+        
+        if (tipo === "ASSISTENCIA") {
+
+            estatisticas.assistencias++;
+        }
+    }
+
+
+    console.log(
+        "PONTO: " +
+        equipa +
+        " - " +
+        tipo
+    );
+}
+
+
+/*
+=========================================================
+JOGAR RALLY
+=========================================================
+
+Estrutura:
+
+SERVIÇO
+↓
+1º TOQUE - RECEÇÃO
+↓
+2º TOQUE - LEVANTAMENTO
+↓
+3º TOQUE - ATAQUE
+↓
+resultado
+*/
+
+function jogarRally() {
+
+    /*
+    Verificar se o jogo terminou
+    */
+
+    if (verificarFimDeJogo()) {
+
+        return;
+    }
+
+
+    /*
+    Verificar se o set terminou
+    */
+
+    if (verificarFimDeSet()) {
+
+        return;
+    }
+
+
+    let equipaQueRecebe;
+    let servidor;
+    let receptor;
+    /*
+    Escolher aleatoriamente quem serve
+    */
+equipaQueRecebe = equipaQueServe === "jogador"
+    ? "adversario"
+    : "jogador";
+
+if (equipaQueServe === "jogador") {
+    servidor = escolherServidor("jogador");
+    receptor = escolherReceptor(jogadoresAdversarios);
+} else {
+    servidor = escolherServidor("adversario");
+    receptor = escolherReceptor(jogadoresEscolhidos);
+}
+
+
+    console.log(
+        "=============================="
+    );
+
+    console.log(
+        "NOVO RALLY"
+    );
+
+    console.log(
+        servidor.nome +
+        " está a servir."
+    );
+
+    console.log(
+        receptor.nome +
+        " vai receber."
+    );
+
+
+    /*
+    =====================================================
+    SERVIÇO
+    =====================================================
+    */
+
+    let resultadoServico =
+        resolverServico(
+            servidor,
+            receptor
+        );
+
+
+    /*
+    ACE
+    */
+
+    if (
+        resultadoServico.tipo === "ACE"
+    ) {
+
+        darPonto(equipaQueServe,servidor,"ACE");
+
+        console.log(servidor.nome +" fez ACE!");
+
+        atualizarPlacar();
+
+        return;
+    }
+
+
+    /*
+    =====================================================
+    DEFINIR EQUIPA QUE RECEBEU
+    =====================================================
+    */
+
+    let equipaAtacante;
+
+    let equipaDefensora;
+
+
+    if (
+        equipaQueRecebe === "jogador"
+    ) {
+
+        equipaAtacante =
+            jogadoresEscolhidos;
+
+        equipaDefensora =
+            jogadoresAdversarios;
+
+    } else {
+
+        equipaAtacante =
+            jogadoresAdversarios;
+
+        equipaDefensora =
+            jogadoresEscolhidos;
+    }
+
+
+    /*
+    =====================================================
+    1º TOQUE
+    RECEÇÃO
+    =====================================================
+
+    O jogador já foi escolhido:
+
+    receptor
+    */
+
+
+    console.log(
+        "1º toque: " +
+        receptor.nome +" fez a receção.");
+
+
+    /*
+    =====================================================
+    2º TOQUE
+    LEVANTAMENTO
+    =====================================================
+    */
+
+    let levantador =
+        escolherLevantador(
+            equipaAtacante,
+            receptor
+        );
+
+
+    let resultadoLevantamento =
+        resolverLevantamento(
+            levantador,
+            resultadoServico
+        );
+
+
+    console.log(
+        "2º toque: " +
+        levantador.nome +
+        " fez o levantamento."
+    );
+
+
+    /*
+    =====================================================
+    3º TOQUE
+    ATAQUE
+    =====================================================
+    */
+
+    let atacante =
+        escolherAtacante(
+            equipaAtacante,
+            receptor,
+            levantador
+        );
+
+
+    console.log(
+        "3º toque: " +
+        atacante.nome +
+        " atacou."
+    );
+
+
+    let resultadoAtaque =
+        resolverAtaque(
+            atacante,
+            equipaDefensora,
+            resultadoLevantamento.bonusAtaque
+        );
+
+
+    /*
+    =====================================================
+    ATAQUE VENCEDOR
+    =====================================================
+    */
+
+    if (
+        resultadoAtaque.tipo === "ATAQUE"
+    ) {
+
+        darPonto(equipaQueRecebe,atacante,"ATAQUE");
+        darPonto(equipaQueRecebe,levantador,"ASSISTENCIA");
+
+        console.log(
+            atacante.nome +
+            " marcou através de ataque!"
+        );
+
+
+        atualizarPlacar();
+
+        return;
+    }
+
+
+    /*
+    =====================================================
+    RALLY CONTINUA
+    =====================================================
+
+    O ataque não matou a jogada.
+
+    Agora a outra equipa ganha a bola
+    e começa os seus próprios 3 toques.
+    */
+
+    continuarRally(
+        equipaDefensora,
+        equipaAtacante,
+
+        equipaQueRecebe === "jogador"
+            ? "adversario"
+            : "jogador"
+    );
+
+
+    atualizarPlacar();
+}
+
+
+/*
+=========================================================
+CONTINUAR RALLY
+=========================================================
+
+A equipa que defendeu passa a atacar.
+
+Também respeita:
+
+1º toque → receção
+2º toque → levantamento
+3º toque → ataque
+*/
+
+function continuarRally(
+    equipaQueDefendeu,
+    equipaQueAtacou,
+    nomeEquipaDefensora
+) {
+
+    console.log(
+        "----- RALLY CONTINUA -----"
+    );
+
+
+    /*
+    A equipa que acabou de defender
+    passa a atacar.
+    */
+
+    let receptor =
+        escolherReceptor(
+            equipaQueDefendeu
+        );
+
+
+    /*
+    1º TOQUE
+    */
+
+    console.log(
+        "1º toque: " +
+        receptor.nome +
+        " fez a defesa."
+    );
+
+
+    /*
+    2º TOQUE
+    */
+
+    let levantador =
+        escolherLevantador(
+            equipaQueDefendeu,
+            receptor
+        );
+
+
+    let resultadoLevantamento =
+        resolverLevantamento(
+            levantador,
+            {
+                dificuldade: 0
+            }
+        );
+
+
+    console.log(
+        "2º toque: " +
+        levantador.nome +
+        " levantou."
+    );
+
+
+    /*
+    3º TOQUE
+    */
+
+    let atacante =
+        escolherAtacante(
+            equipaQueDefendeu,
+            receptor,
+            levantador
+        );
+
+
+    console.log(
+        "3º toque: " +
+        atacante.nome +
+        " atacou."
+    );
+
+
+    /*
+    O ataque enfrenta a equipa
+    que tinha atacado anteriormente.
+    */
+
+    let resultadoAtaque =
+        resolverAtaque(
+            atacante,
+            equipaQueAtacou,
+            resultadoLevantamento.bonusAtaque
+        );
+
+
+    /*
+    ATAQUE VENCEDOR
+    */
+
+    
+        if (resultadoAtaque.tipo === "ATAQUE") {
+
+            darPonto(
+                nomeEquipaDefensora,
+                atacante,
+                "ATAQUE"
+            );
+
+            // Registar a assistência do levantador
+            darPonto(
+                nomeEquipaDefensora,
+                levantador,
+                "ASSISTENCIA"
+            );
+
+            console.log(
+                atacante.nome +
+                " marcou no rally!"
+            );
+
+            console.log(
+                "Assistência: " +
+                levantador.nome
+            );
+
+            atualizarPlacar();
+
+            return;
+        }
+
+
+    /*
+    Se a bola continuar, vamos fazer
+    mais uma troca de ataques.
+
+    Para evitar um loop infinito,
+    existe um limite de rallies internos.
+    */
+
+    continuarRallyLongo(equipaQueDefendeu,equipaQueAtacou,nomeEquipaDefensora,1);
+}
+
+
+/*
+=========================================================
+RALLY LONGO
+=========================================================
+
+Permite que a jogada continue várias vezes.
+
+O parâmetro numeroTrocas impede que o programa
+fique preso num loop infinito.
+*/
+
+function continuarRallyLongo(
+    equipaA,
+    equipaB,
+    equipaAtual,
+    numeroTrocas) {
+
+    const MAX_TROCAS = 5;
+
+
+    /*
+    Se ultrapassar o limite,
+    usamos o físico + sorte para determinar
+    quem consegue manter a jogada.
+    */
+
+    if (
+        numeroTrocas > MAX_TROCAS
+    ) {
+
+        let mediaA =
+            calcularMediaFisico(
+                equipaA
+            );
+
+        let mediaB =
+            calcularMediaFisico(
+                equipaB
+            );
+
+
+        let resultadoA =
+            mediaA + rolagem();
+
+        let resultadoB =
+            mediaB + rolagem();
+
+
+        if (
+            resultadoA >= resultadoB
+        ) {
+
+            let jogador =
+                escolherAtacanteAleatorio(
+                    equipaA
+                );
+
+
+            darPonto(equipaAtual,jogador,"ATAQUE");
+
+        } else {
+
+            let outraEquipa =
+                equipaAtual === "jogador"
+                    ? "adversario"
+                    : "jogador";
+
+
+            let jogador =
+                escolherAtacanteAleatorio(equipaB);
+            darPonto(outraEquipa,jogador,"ATAQUE");
+        }
+
+
+        return;
+    }
+
+
+    /*
+    Trocar as equipas
+    */
+
+    let novaEquipaAtacante =
+        equipaA;
+
+    let novaEquipaDefensora =
+        equipaB;
+
+
+    let nomeEquipaAtacante =
+        equipaAtual;
+
+
+    /*
+    Receção
+    */
+
+    let receptor =
+        escolherReceptor(
+            novaEquipaAtacante
+        );
+
+
+    /*
+    Levantamento
+    */
+
+    let levantador =
+        escolherLevantador(
+            novaEquipaAtacante,
+            receptor
+        );
+
+
+    let resultadoLevantamento =
+        resolverLevantamento(
+            levantador,
+            {
+                dificuldade: 0
+            }
+        );
+
+
+    /*
+    Ataque
+    */
+
+    let atacante =
+        escolherAtacante(
+            novaEquipaAtacante,
+            receptor,
+            levantador
+        );
+
+
+    let resultadoAtaque =
+        resolverAtaque(
+            atacante,
+            novaEquipaDefensora,
+            resultadoLevantamento.bonusAtaque
+        );
+
+
+    /*
+    ATAQUE VENCEDOR
+    */
+
+    if (resultadoAtaque.tipo === "ATAQUE") {
+
+        darPonto(nomeEquipaAtacante,atacante,"ATAQUE");
+        darPonto(nomeEquipaAtacante,levantador,"ASSISTENCIA");
+        return;
+    }
+
+
+    /*
+    Mais uma troca.
+    */
+
+    let proximaEquipa =
+        nomeEquipaAtacante === "jogador"
+            ? "adversario"
+            : "jogador";
+
+
+    continuarRallyLongo(novaEquipaDefensora,novaEquipaAtacante,proximaEquipa,numeroTrocas + 1);
+}
+
+
+/*
+=========================================================
+CALCULAR MÉDIA DE FÍSICO
+=========================================================
+*/
+
+function calcularMediaFisico(jogadores) {
+
+    if (
+        jogadores.length === 0
+    ) {
+
+        return 0;
+    }
+
+
+    let total = 0;
+
+
+    jogadores.forEach(
+        jogador => {
+
+            total += jogador.fisico;
+        }
+    );
+
+
+    return total / jogadores.length;
+}
+
+
+/*
+=========================================================
+ESCOLHER ATACANTE ALEATÓRIO
+=========================================================
+*/
+
+function escolherAtacanteAleatorio(
+    jogadores
+) {
+
+    let indice =
+        Math.floor(
+            Math.random() *
+            jogadores.length
+        );
+
+
+    return jogadores[indice];
+}
+
+
+/*
+=========================================================
+ATUALIZAR PLACAR
+=========================================================
+*/
+
+function atualizarPlacar() {
+
+    let elementoEquipa =
+        document.getElementById(
+            "team-score"
+        );
+
+    let elementoAdversario =
+        document.getElementById(
+            "opponent-score"
+        );
+
+
+    if (elementoEquipa) {
+
+        elementoEquipa.textContent =
+            jogadorPontos;
+    }
+
+
+    if (elementoAdversario) {
+
+        elementoAdversario.textContent =
+            adversarioPontos;
+    }
+
+
+    /*
+    Verificar se o set terminou
+    */
+
+    verificarFimDeSet();
+}
+
+
+/*
+=========================================================
+VERIFICAR FIM DO SET
+=========================================================
+
+15 pontos e diferença de pelo menos 2.
+*/
+
+function verificarFimDeSet() {
+
+    let setTerminou = false;
+
+
+    if (jogadorPontos >= PONTOS_PARA_VENCER && jogadorPontos - adversarioPontos >= 2) {
+        jogadorSets++;
+        setTerminou = true;
+        console.log(
+            "BARREIRO GANHOU O SET!"
+        );
+
+    }
+    else if (adversarioPontos >= PONTOS_PARA_VENCER && adversarioPontos - jogadorPontos >= 2) {
+        adversarioSets++;
+        setTerminou = true;
+        console.log(
+            equipaAdversaria +
+            " GANHOU O SET!"
+        );
+    }
+
+
+    if (setTerminou) {
+
+        console.log(
+            "Sets: " +
+            jogadorSets +
+            " - " +
+            adversarioSets
+        );
+
+        
+        if (jogadores1set < 0){
+            jogadores1set = jogadorPontos;
+        }
+        else if (jogadores2set < 0){
+            jogadores2set = jogadorPontos;
+
+        }
+        else if (jogadores3set < 0){
+            jogadores3set = jogadorPontos;
+        }
+        else if (jogadores4set < 0){
+            jogadores4set = jogadorPontos;
+        }
+        
+        else{
+            jogadores5set = jogadorPontos;
+        }
+
+        
+        if (adversario1set < 0){
+            adversario1set = adversarioPontos;
+        }
+        else if (adversario2set < 0){
+            adversario2set = adversarioPontos;
+
+        }
+        else if (adversario3set < 0){
+            adversario3set = adversarioPontos;
+        }
+        else if (adversario4set < 0){
+            adversario4set = adversarioPontos;
+        }
+        else{
+            adversario5set = adversarioPontos;
+        }
+
+        historicoSets.push({
+            numero: historicoSets.length + 1,
+            jogador: jogadorPontos,
+            adversario: adversarioPontos,
+            vencedor: jogadorPontos > adversarioPontos
+            ? "jogador"
+            : "adversario"
+        });
+        
+        jogadorPontos = 0;
+        adversarioPontos = 0;
+        atualizarPlacarSemVerificarSet();
+    }
+
+    return setTerminou;
+}
+
+
+/*
+=========================================================
+ATUALIZAR PLACAR SEM VOLTAR A VERIFICAR O SET
+=========================================================
+*/
+
+function atualizarPlacarSemVerificarSet() {
+
+    let elementoEquipa =
+        document.getElementById(
+            "team-score"
+        );
+
+    let elementoAdversario =
+        document.getElementById(
+            "opponent-score"
+        );
+
+
+    if (elementoEquipa) {
+
+        elementoEquipa.textContent =
+            jogadorPontos;
+    }
+
+
+    if (elementoAdversario) {
+
+        elementoAdversario.textContent =
+            adversarioPontos;
+    }
+}
+
+
+/*
+=========================================================
+VERIFICAR FIM DO JOGO
+=========================================================
+
+Primeiro a 3 sets ganha.
+*/
+
+function verificarFimDeJogo() {
+
+    if (jogadorSets == 3) {
+        console.log(
+            "BARREIRO GANHOU O JOGO!"
+        );
+        return true;
+    }
+    if (adversarioSets == 3) {
+        console.log(
+            equipaAdversaria +
+            " GANHOU O JOGO!"
+        );
+        return true;
+    }
+    return false;
+}
+
+
+/*
+=========================================================
+INICIALIZAR ESTATÍSTICAS
+=========================================================
+*/
+
+function inicializarEstatisticas(jogadores) {
+
+    jogadores.forEach(
+        jogador => {
+
+            estatisticasJogadores[jogador.id] = {
+
+                nome: jogador.nome,
+
+                pontos: 0,
+
+                ataques: 0,
+
+                aces: 0,
+
+                assistencias: 0,
+
+                errosAtaque: 0,
+
+                errosServico: 0,
+
+                defesas: 0
+            };
+        }
+    );
+}
+
+
+/*
+=========================================================
+MOSTRAR ESTATÍSTICAS
+=========================================================
+*/
+
+function mostrarEstatisticas() {
+
+    console.log(
+        "=============================="
+    );
+
+    console.log(
+        "ESTATÍSTICAS"
+    );
+
+
+    jogadoresEscolhidos.forEach(
+        jogador => {
+
+            let stats =
+                estatisticasJogadores[
+                    jogador.id
+                ];
+
+
+            console.log(
+                jogador.nome +
+                " | " +
+
+                "Pontos: " +
+                stats.pontos +
+
+                " | Ataques: " +
+                stats.ataques +
+
+                " | ACE: " +
+                stats.aces +
+
+                " | assistencias: " +
+                stats.assistencias
+            );
+        }
+    );
+
+    console.log("==============================");
+    console.log("PLACAR");
+    console.log("Jogador " + jogadorSets + "|" + adversarioSets + " " + equipaAdversaria);
+
+    console.log("Primeiro SET");
+    if (jogadores1set>adversario1set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores1set + "|" + adversario1set + " " + equipaAdversaria);
+
+    console.log("Segundo SET");
+    if (jogadores2set>adversario2set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores2set + "|" + adversario2set + " " + equipaAdversaria);
+
+    console.log("Terceiro SET");
+    if(jogadores3set>adversario3set){
+        console.log("Venceu");
+    }
+    else{
+        console.log("Perdeu");
+    }
+    console.log("Jogador " + jogadores3set + "|" + adversario3set + " " + equipaAdversaria);
+
+    if(jogadores4set > -1 || adversario4set > -1){
+        console.log("Quarto SET");
+        if(jogadores4set>adversario4set){
+            console.log("Venceu");
+        }
+        else{
+            console.log("Perdeu");
+        }
+        console.log("Jogador " + jogadores4set + "|" + adversario4set + " " + equipaAdversaria);
+    }
+
+    if(jogadores5set > -1 || adversario5set > -1){
+        console.log("Quinto SET");
+        if(jogadores5set>adversario5set){
+            console.log("Venceu");
+        }
+        else{
+            console.log("Perdeu");
+        }
+        console.log("Jogador " + jogadores5set + "|" + adversario5set + " " + equipaAdversaria);
+    }
+}
+
+
+function esperar(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function abrirPopupJogo() {
+    document.getElementById("match-overlay").hidden = false;
+
+    document.getElementById("match-title").textContent =
+        "Jogo em andamento";
+
+    document.getElementById("match-home-name").textContent =
+        "Barreiro";
+
+    document.getElementById("match-away-name").textContent =
+        equipaAdversaria;
+
+    document.getElementById("match-home-score").textContent = "0";
+    document.getElementById("match-away-score").textContent = "0";
+    document.getElementById("match-home-sets").textContent = "0";
+    document.getElementById("match-away-sets").textContent = "0";
+
+    document.getElementById("match-sets-list").innerHTML = "";
+    document.getElementById("match-status").textContent =
+        "O jogo vai começar...";
+
+    document.getElementById("match-statistics").hidden = true;
+    document.getElementById("match-finish").hidden = true;
+}
+
+function atualizarPopupPlacar() {
+    document.getElementById("match-home-score").textContent =
+        jogadorPontos;
+
+    document.getElementById("match-away-score").textContent =
+        adversarioPontos;
+
+    document.getElementById("match-home-sets").textContent =
+        jogadorSets;
+
+    document.getElementById("match-away-sets").textContent =
+        adversarioSets;
+}
+
+function mostrarResultadoSet(set) {
+    const lista = document.getElementById("match-sets-list");
+
+    // Retira a mensagem inicial, se existir.
+    if (historicoSets.length === 1) {
+        lista.innerHTML = "";
+    }
+
+    const linha = document.createElement("div");
+    linha.className = "set-result " +
+        (set.vencedor === "jogador" ? "set-won" : "set-lost");
+
+    const nome = document.createElement("span");
+    nome.textContent = "Set " + set.numero;
+
+    const resultado = document.createElement("strong");
+    resultado.textContent = set.jogador + " : " + set.adversario;
+
+    const vencedor = document.createElement("small");
+    vencedor.textContent = set.vencedor === "jogador"
+        ? "Vitória"
+        : "Derrota";
+
+    linha.append(nome, resultado, vencedor);
+    lista.appendChild(linha);
+}
+
+function mostrarEstatisticasNoPopup() {
+    const lista = document.getElementById("statistics-list");
+    lista.innerHTML = "";
+
+    const cabecalho = document.createElement("div");
+    cabecalho.className = "stat-row stat-head";
+
+    ["Jogador", "Pontos", "Ataques", "Aces", "Assist."].forEach(texto => {
+        const celula = document.createElement("span");
+        celula.textContent = texto;
+        cabecalho.appendChild(celula);
+    });
+
+    lista.appendChild(cabecalho);
+
+    jogadoresEscolhidos.forEach(jogador => {
+        const stats = estatisticasJogadores[jogador.id];
+        if (!stats) return;
+
+        const linha = document.createElement("div");
+        linha.className = "stat-row";
+
+        [
+            stats.nome,
+            stats.pontos,
+            stats.ataques,
+            stats.aces,
+            stats.assistencias
+        ].forEach(valor => {
+            const celula = document.createElement("span");
+            celula.textContent = valor;
+            linha.appendChild(celula);
+        });
+
+        lista.appendChild(linha);
+    });
+
+    document.getElementById("match-statistics").hidden = false;
+}
+    
+    async function iniciarJogo() {
+        const botao = document.getElementById("start-game");
+
+        if (jogadoresEscolhidos.length !== 3) {
+            alert("Tens de escolher os 3 jogadores antes de começar.");
+            return;
+        }
+
+        botao.disabled = true;
+
+        try {
+            // Reiniciar o estado do jogo.
+            jogadorPontos = 0;
+            adversarioPontos = 0;
+            jogadorSets = 0;
+            adversarioSets = 0;
+            estatisticasJogadores = {};
+            historicoSets = [];
+
+            jogadores1set = -1;
+            jogadores2set = -1;
+            jogadores3set = -1;
+            jogadores4set = -1;
+            jogadores5set = -1;
+
+            adversario1set = -1;
+            adversario2set = -1;
+            adversario3set = -1;
+            adversario4set = -1;
+            adversario5set = -1;
+
+            sortearEquipeAdversaria();
+
+            const sucesso = await construirEquipaAdversaria();
+
+            if (!sucesso) {
+                alert("Não foi possível construir a equipa adversária.");
+                return;
+            }
+
+            inicializarEstatisticas(jogadoresEscolhidos);
+            inicializarEstatisticas(jogadoresAdversarios);
+
+            abrirPopupJogo();
+
+            // Permite ao navegador desenhar o popup antes de começar.
+            await esperar(100);
+
+            let setsApresentados = 0;
+
+            while (!verificarFimDeJogo()) {
+                const setsAntes = jogadorSets + adversarioSets;
+
+                jogarRally();
+
+                atualizarPopupPlacar();
+
+                // Pequena pausa entre rallies para o marcador ser visível.
+                await esperar(350);
+
+                const setsDepois = jogadorSets + adversarioSets;
+
+                if (setsDepois > setsAntes) {
+                    const ultimoSet = historicoSets[historicoSets.length - 1];
+
+                    if (ultimoSet && setsApresentados < historicoSets.length) {
+                        mostrarResultadoSet(ultimoSet);
+                        setsApresentados++;
+
+                        document.getElementById("match-status").textContent =
+                            ultimoSet.vencedor === "jogador"
+                                ? "O Barreiro venceu o set!"
+                                : equipaAdversaria + " venceu o set!";
+
+                        atualizarPopupPlacar();
+
+                        // Tempo para o utilizador ler o resultado do set.
+                        await esperar(1800);
+                    }
+                }
+            }
+
+            atualizarPopupPlacar();
+
+            document.getElementById("match-title").textContent =
+                jogadorSets === 3
+                    ? "VITÓRIA DO BARREIRO!"
+                    : "DERROTA DO BARREIRO";
+
+            document.getElementById("match-status").textContent =
+                "Resultado final: " + jogadorSets + " - " + adversarioSets;
+
+            mostrarEstatisticasNoPopup();
+
+            document.getElementById("match-finish").hidden = false;
+
+        } catch (erro) {
+            console.error("Erro ao iniciar o jogo:", erro);
+            alert("Ocorreu um erro ao iniciar o jogo. Consulta a consola para ver o erro.");
+        } finally {
+            botao.disabled = false;
+        }
+    }
+
+    document.getElementById("close-match").addEventListener("click", () => {
+    document.getElementById("match-overlay").hidden = true;
+});
+
+document.getElementById("match-finish").addEventListener("click", () => {
+    document.getElementById("match-overlay").hidden = true;
+});
     </script>
 
 
