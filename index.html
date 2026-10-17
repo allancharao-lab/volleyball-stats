@@ -474,9 +474,27 @@ body {
             font-weight: bold;
             cursor: pointer;
             border: none;
+            display: none;
         }
 
         .comecarJogo:hover{
+        background: #666;
+        }
+
+        
+        .sortearEquipe{
+            color: white;
+            background: #555;
+            border-radius: 6px;
+            width: 95%;
+            padding: 10px;
+            margin-top: 7px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .sortearEquipe:hover{
         background: #666;
         }
 
@@ -821,6 +839,11 @@ body {
             ?
         </div>
 
+        <button id="teamSelection" class="sortearEquipe">
+            Sortear equipe
+        </button>
+
+        
         <button onclick="iniciarJogo()" id="start-game" class="comecarJogo">
             Começar jogo
         </button>
@@ -854,6 +877,63 @@ body {
             </div>
         </div>
     </div>
+
+    <!-- POPUP DO JOGO -->
+<div id="match-overlay" class="match-overlay" hidden>
+    <div class="match-popup">
+
+        <div class="match-header">
+            <span class="match-tag">3x3 VOLLEYBALL</span>
+            <button id="close-match" class="close-match"
+                    type="button" aria-label="Fechar">×</button>
+        </div>
+
+        <h2 id="match-title">Jogo em andamento</h2>
+
+        <div class="match-scoreboard">
+            <div class="match-team">
+                <span id="match-home-name">Barreiro</span>
+                <strong id="match-home-score">0</strong>
+            </div>
+
+            <span class="score-separator">:</span>
+
+            <div class="match-team">
+                <span id="match-away-name">Adversário</span>
+                <strong id="match-away-score">0</strong>
+            </div>
+        </div>
+
+        <div class="sets-counter">
+            Sets ganhos:
+            <strong id="match-home-sets">0</strong>
+            -
+            <strong id="match-away-sets">0</strong>
+        </div>
+
+        <div class="match-section">
+            <h3>Resultado dos sets</h3>
+            <div id="match-sets-list">
+                <p class="match-placeholder">À espera do primeiro set...</p>
+            </div>
+        </div>
+
+        <div id="match-status" class="match-status">
+            A preparar o jogo...
+        </div>
+
+        <div id="match-statistics" class="match-statistics" hidden>
+            <h3>Estatísticas dos jogadores</h3>
+            <div id="statistics-list"></div>
+        </div>
+
+        <button id="match-finish" class="match-finish"
+                type="button" hidden>
+            Fechar resultados
+        </button>
+
+    </div>
+</div>
 
     <script>
         const equipes = ["Barreiro 2026", "Setúbal 2025", "Corroios 2026", "Barreiro 2025", "Barreiro 2024"];
@@ -1569,6 +1649,8 @@ body {
                     "</div>";
 
             }
+
+            document.getElementById("start-game").style.display = "block";
         }
 
         // ======================================================
@@ -1576,7 +1658,7 @@ body {
         // ======================================================
 
         
-        document.getElementById("start-game").addEventListener("click", function () {
+        document.getElementById("teamSelection").addEventListener("click", function () {
 
             carregarPersonagens();
 
@@ -1696,40 +1778,8 @@ SORTEAR EQUIPA ADVERSÁRIA
 */
 
 function sortearEquipeAdversaria() {
-
-    let novaEquipe;
-
-    do {
-
-        novaEquipe = sortearEquipe();
-
-    } while (novaEquipe === equipaTeste);
-
-    equipaAdversaria = novaEquipe;
-
-    console.log(
-        "Equipa adversária: " +
-        equipaAdversaria
-    );
-
-    return equipaAdversaria;
-}
-
-
-/*
-=========================================================
-SORTEAR UMA EQUIPA
-=========================================================
-*/
-
-function sortearEquipe() {
-
-    const indice =
-        Math.floor(
-            Math.random() * equipes.length
-        );
-
-    return equipes[indice];
+    const indice = Math.floor(Math.random() * equipes.length);
+    equipaAdversaria = equipes[indice];
 }
 
 
